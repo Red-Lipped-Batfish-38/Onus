@@ -16,7 +16,21 @@ const App = () => {
         {/* Auto load to Login page/> */}
         <Route exact path="/" element={<Login />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
-        <Route exact path="/homepage" element={<HomeContainer />} />
+        <Route
+          exact
+          path="/homepage/user/:user_id"
+          element={<HomeContainer />}
+        />
+        <Route
+          exact
+          path="user/:user_id/project/:project_id/"
+          element={<Project />}
+        />
+        <Route
+          exact
+          path="user/:user_id/project/:project_id/task/:task_id"
+          element={<TasksContainer />}
+        />
       </Routes>
     </div>
   );
