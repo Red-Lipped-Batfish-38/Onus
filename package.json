@@ -43,6 +43,7 @@
     "@mui/material": "^5.11.7",
     "@mui/system": "^5.11.7",
     "@mui/x-data-grid": "^5.17.22",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
