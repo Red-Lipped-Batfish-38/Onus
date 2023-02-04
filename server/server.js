@@ -50,3 +50,7 @@ module.exports = app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
 );
 
+// {
+//   "email" : "nicholas@nicholas.com",
+//  "password": "something"
+// }
