@@ -1,18 +1,23 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-import Login from './Login.jsx';
-import '../styles.scss';
-import HomeContainer from '../containers/HomeContainer.jsx';
+import Login from '../containers/LoginPage.jsx';
+// import '../styles.scss';
+import HomeContainer from '../containers/HomePage.jsx';
+import Navbar from './Navbar.jsx';
 
 const App = () => {
   return (
     <div>
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
-      {/* <Header/> */}
+      <Navbar className="navbar" />
       <h1>WELCOME</h1>
-      <h2>sign in pl0x</h2>
-      <Login />
+      <Routes>
+        {/* Auto load to Login page/> */}
+        <Route exact path="/" element={<Login />} />
+        {/* <Route exact path="/signup" element={<Signup />} /> */}
+        <Route exact path="/homepage" element={<HomeContainer />} />
+      </Routes>
     </div>
   );
 };
