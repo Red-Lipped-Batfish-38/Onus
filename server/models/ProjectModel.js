@@ -58,27 +58,3 @@ module.exports = pool;
 // JOIN task ON subTask.taskId = task._id
 // JOIN project ON task.projectId = project._id
 // WHERE project._id = 1;
-
-// CREATE TABLE project (
-//   _id SERIAL PRIMARY KEY,
-//   projectName VARCHAR(255) NOT NULL,
-//   projectDescription TEXT NOT NULL
-// );
-
-// CREATE TABLE task (
-//   _id SERIAL PRIMARY KEY,
-//   taskName VARCHAR(255) NOT NULL,
-//   taskDescription TEXT NOT NULL,
-//   dueDate DATE,
-//   projectId INT NOT NULL,
-//   FOREIGN KEY (projectId) REFERENCES project(_id)
-// );
-
-// CREATE TABLE subTask (
-//   _id SERIAL PRIMARY KEY,
-//   subTaskName VARCHAR(255) NOT NULL,
-//   subTaskDescription TEXT NOT NULL,
-//   subTaskDueDate DATE,
-//   taskId INT NOT NULL,
-//   FOREIGN KEY (taskId) REFERENCES task(_id)
-// );
