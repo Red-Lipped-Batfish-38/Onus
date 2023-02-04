@@ -5,6 +5,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 //   <Link to="/homepage"></Link>
 // }
 
+//{email and password} mongo
 //Includes user login, link to sign up, on sign in, route to HomeContainer
 const Login = () => {
   return (
