@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const accountRouter = require('./routes/accountRouter');
+//require('dotenv').config();
 //once we have a secret key available contingent on db
-const key = process.env.SECRET_KEY;
-require('dotenv').config();
-// this is a test of checkout
+const key = 'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(key);
+
 const PORT = 3000;
 const app = express();
 
@@ -24,7 +27,7 @@ app.use(cookieParser());
 app.use(bodyParser.text());
 // require routers
 
-
+app.use('/account', accountRouter);
 
 // require controllers?
 
@@ -46,3 +49,4 @@ app.use((err, req, res, next) => {
 module.exports = app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
 );
+
