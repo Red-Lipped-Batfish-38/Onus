@@ -24,7 +24,8 @@ module.exports = pool;
 //   taskDescription TEXT NOT NULL,
 //   dueDate DATE,
 //   projectId INT NOT NULL,
-//   FOREIGN KEY (projectId) REFERENCES project(_id)
+//   completed BOOLEAN DEFAULT false,
+//   FOREIGN KEY (projectId) REFERENCES project(_id),
 // );
 
 // INSERT INTO task (taskName, taskDescription, dueDate, projectId)
@@ -36,7 +37,8 @@ module.exports = pool;
 //   subTaskDescription TEXT NOT NULL,
 //   subTaskDueDate DATE,
 //   taskId INT NOT NULL,
-//   FOREIGN KEY (taskId) REFERENCES task(_id)
+//   completed BOOLEAN DEFAULT false,
+//   FOREIGN KEY (taskId) REFERENCES task(_id),
 // );
 
 // INSERT INTO subTask (subTaskName, subTaskDescription, subTaskDueDate, taskId)
@@ -56,7 +58,6 @@ module.exports = pool;
 // JOIN task ON subTask.taskId = task._id
 // JOIN project ON task.projectId = project._id
 // WHERE project._id = 1;
-
 
 // CREATE TABLE project (
 //   _id SERIAL PRIMARY KEY,
