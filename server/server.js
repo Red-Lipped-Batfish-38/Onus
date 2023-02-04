@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 //once we have a secret key available contingent on db
 const key = process.env.SECRET_KEY;
 require('dotenv').config();
-
+// this is a test of checkout
 const PORT = 3000;
 const app = express();
 
@@ -23,6 +23,8 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(bodyParser.text());
 // require routers
+
+
 
 // require controllers?
 
