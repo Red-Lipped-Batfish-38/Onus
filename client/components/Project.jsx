@@ -8,6 +8,7 @@ const Project = () => {
     <div>
       <h3>this is project</h3>
       <TasksContainer />
+      {}
     </div>
   );
 };

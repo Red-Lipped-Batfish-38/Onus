@@ -7,9 +7,10 @@ const HomeContainer = () => {
   return (
     <div>
       <h1>HOMEPAGE</h1>
-      <Project />
+      {/* <Project /> */}
       {/* stretch :: should have empty that allows user to create and be a leader in project */}
       <Project />
+      <Link to="/">Login</Link>
     </div>
   );
 };
