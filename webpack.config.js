@@ -10,7 +10,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html',
+      template: path.resolve(__dirname, './client/index.html'),
     }),
   ],
   devServer: {
@@ -19,14 +19,8 @@ module.exports = {
       directory: path.resolve(__dirname, 'build'),
     },
     proxy: {
-      '/api' : 'http://localhost:3000',
-      cookieDomainRewrite: 'localhost',
+      '/': 'http://localhost:3000', //if this doesn't work, use /api
     },
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
   },
   module: {
     rules: [
