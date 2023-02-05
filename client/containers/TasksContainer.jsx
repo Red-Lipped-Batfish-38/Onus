@@ -1,39 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import TaskCard from '../components/TaskCard.jsx';
+import Todos from '../components/Todos.jsx';
 import { TextField, FormGroup, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-//
+
 const TasksContainer = () => {
   const [tasks, setTasks] = useState([]);
+  const [taskInput, setTaskInput] = useState('');
+  // useEffect(() => {}, []);
 
-  useEffect(() => {}, []);
-
+  //add taskInput into tasks array
   const addTasks = (newTask) => {
-    setTasks([...tasks, newTask]);
+    setTodos([...tasks, newTask]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!taskInput) return;
+    addTasks(taskInput);
   };
 
   return (
     <div>
       <header>
         <h1> TASKS</h1>
+      </header>
+      <div>
         <FormGroup row>
           <TextField
-            id="outlined-basic"
             label="Add New Task"
             variant="outlined"
-            sx={{ width: 300, height: 100 }}
-            InputProps
+            sx={{ width: 200 }}
+            placeholder="Add Task"
+            onChange={(e) => setTaskInput(e.target.value)}
           />
-          <Button>+</Button>
+          <Button onClick={handleSubmit}>+</Button>
         </FormGroup>
-      </header>
+      </div>
       <section className="grid">
-        {/* {tasks.map((task, i) => (
-          <TaskCard key={i} task={task} />
-        ))} */}
-        <TaskCard hi={'hi'} />
+        {tasks.map((task, i) => (
+          <Todos key={i} task={task} />
+        ))}
       </section>
-      <Link to="/user/1/project/3/">back to project</Link>
     </div>
   );
 };
