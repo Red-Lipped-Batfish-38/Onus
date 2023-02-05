@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // const redirectHomepage = () => {
 //   <Link to="/homepage"></Link>
@@ -8,6 +8,43 @@ import { Routes, Route, Link } from 'react-router-dom';
 //{email and password} mongo
 //Includes user login, link to sign up, on sign in, route to HomeContainer
 const Login = () => {
+  const [state, setState] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const verifyLogin = (e) => {
+    e.preventDefault();
+    //check if key match db
+    const userLogin = {
+      email: state.email,
+      password: state.password,
+    };
+    //make a post request
+    //check correct path
+    //does not set any cookies @ login w/ {erica@erica.com, something}
+    fetch('http://localhost:8080/account/log', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(userLogin),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log('post req', result);
+        console.log('login OK');
+        navigate('/homepage');
+      })
+      .catch((err) => {
+        console.log('err at login');
+      });
+  };
+
   return (
     <div>
       <h2>sign in pl0x</h2>
@@ -16,18 +53,30 @@ const Login = () => {
         {/* input form*/}
         {/* on submit, and verification, send to HomeContainer */}
         <form>
-          <label for="userName">Username: </label>
-          <input type="text" id="userName"></input>
+          <label for="email">Email: </label>
+          <input
+            type="text"
+            id="email"
+            placeholder="Enter Email"
+            value={state.email}
+            onChange={handleChange}
+          ></input>
           <label for="password">Password: </label>
-          <input type="text" id="password"></input>
-          <Link to="/homepage/user/2">
-            to homepage
-            {/* <button type="button" onClick={redirectHomepage}></button> */}
-          </Link>
+          <input
+            type="text"
+            id="password"
+            placeholder="Enter Password"
+            value={state.password}
+            onChange={handleChange}
+          ></input>
+          <button type="submit" onClick={verifyLogin}>
+            Login
+          </button>
         </form>
       </div>
       <Link to="/signup">to signup</Link>
       <br></br>
+      <Link to="/homepage/1">to homepage</Link>
     </div>
   );
 };
