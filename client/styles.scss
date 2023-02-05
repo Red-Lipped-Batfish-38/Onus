@@ -1,0 +1,30 @@
+$primary-color: #a889c3;
+$primary-dark: rgb(40, 40, 40);
+
+body {
+  background-color: gray;
+}
+nav {
+  outline: 1px solid red;
+}
+.indexForm {
+  border-style: double;
+  border-color: pink;
+}
+
+// Navbar {
+//   outline: 1px solid red;
+// }
+.navbar {
+  outline: 1px solid red;
+  background-color: #a889c3;
+  height: 60px;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  li {
+    text-decoration: none;
+  }
+}
