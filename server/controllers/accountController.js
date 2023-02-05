@@ -90,4 +90,29 @@ accountController.checkUser = (req, res, next) => {
       });
   };
 
+  //add project to account accountController.addProjectToAccount
+  accountController.addProjectToAccount = (req, res, next) => {
+    const ObjectId = require('mongodb').ObjectId; 
+    const id = req.cookies.ssid;     
+    const o_id = new ObjectId(id);
+    console.log('checking from add project to account')
+    Account.findOneAndUpdate({_id:o_id}, { $push: { projectIds: res.locals.newEntry } }).exec()
+      .then((data) => {
+        console.log('we successfully added a project id');
+        //console.log(data);
+        // const {firstName, lastName, email} = data[0];
+        // res.locals.new = {firstName, lastName, email};
+        console.log(data);
+        next();
+      })
+      .catch(err => {
+        next({
+            log: 'Error occurred in the accountController.checkUser middleware',
+            status: 400,
+            err: { err: 'Unknown cookie error'}
+        });
+      });
+  };
+
+
 module.exports = accountController;
