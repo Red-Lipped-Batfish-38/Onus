@@ -26,10 +26,11 @@ const Login = () => {
       email: state.email,
       password: state.password,
     };
+    // console.log(userLogin); //OK
     //make a post request
     //check correct path
     //does not set any cookies @ login w/ {erica@erica.com, something}
-    fetch('http://localhost:8080/account/log', {
+    fetch('http://localhost:3000/account/log', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(userLogin),
