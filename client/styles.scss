@@ -28,3 +28,14 @@ nav {
     text-decoration: none;
   }
 }
+
+#taskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: center;
+}

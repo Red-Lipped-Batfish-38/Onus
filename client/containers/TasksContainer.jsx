@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Todos from '../components/Todos.jsx';
+import TaskCard from '../components/TaskCard.jsx';
 import { TextField, FormGroup, Button } from '@mui/material';
 
 const TasksContainer = () => {
-  const [tasks, setTasks] = useState([]);
+  const [cards, setTaskCards] = useState([]);
   const [taskInput, setTaskInput] = useState('');
   // useEffect(() => {}, []);
 
   //add taskInput into tasks array
   const addTasks = (newTask) => {
-    setTodos([...tasks, newTask]);
+    setTaskCards([...cards, newTask]);
   };
 
   const handleSubmit = (e) => {
@@ -19,25 +19,26 @@ const TasksContainer = () => {
   };
 
   return (
-    <div>
-      <header>
+    <div id="taskContainer">
+      <header className="taskHeader">
         <h1> TASKS</h1>
       </header>
-      <div>
+      <div className="taskHeader">
         <FormGroup row>
           <TextField
             label="Add New Task"
             variant="outlined"
-            sx={{ width: 200 }}
+            sx={{ width: 400, height: 100 }}
             placeholder="Add Task"
             onChange={(e) => setTaskInput(e.target.value)}
           />
           <Button onClick={handleSubmit}>+</Button>
         </FormGroup>
       </div>
-      <section className="grid">
-        {tasks.map((task, i) => (
-          <Todos key={i} task={task} />
+      <hr />
+      <section className="CardGrid">
+        {cards.map((card, i) => (
+          <TaskCard key={i} card={card} />
         ))}
       </section>
     </div>
