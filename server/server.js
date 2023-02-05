@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const accountRouter = require('./routes/accountRouter');
+const projectRouter = require('./routes/projectRouter');
 //require('dotenv').config();
 //once we have a secret key available contingent on db
 const key = 'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
@@ -28,7 +29,7 @@ app.use(bodyParser.text());
 // require routers
 
 app.use('/account', accountRouter);
-
+app.use('/project', projectRouter);
 // require controllers?
 
 app.use((req, res) => {

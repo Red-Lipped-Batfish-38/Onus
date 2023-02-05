@@ -5,14 +5,14 @@ import TasksContainer from '../containers/TasksContainer.jsx';
 import Login from '../containers/LoginPage.jsx';
 // import '../styles.scss';
 import HomeContainer from '../containers/HomePage.jsx';
-import Navbar from './Navbar.jsx';
+import NavbarMain from './NavbarMain.jsx';
 
 const App = () => {
   const { userID } = useParams();
   return (
     <div>
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
-      <Navbar className="navbar" />
+      <NavbarMain className="navbar-main" />
       <h1>WELCOME</h1>
       <Routes>
         {/* Auto load to Login page/> */}

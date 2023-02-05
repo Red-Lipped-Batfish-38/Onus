@@ -1,13 +1,13 @@
 const { Pool } = require('pg');
-const key = process.env.SECRET_KEY;
-require('dotenv').config();
-const PG_URI = process.env.SQL_KEY;
+//const key = process.env.SECRET_KEY;
+//require('dotenv').config();
+const PG_URI =  "postgres://xqoadpix:b7BZyQbOkIKJ8jlthG3c2Cl6tJWUaCg1@hansken.db.elephantsql.com/xqoadpix";
 
 const pool = new Pool({
   connectionString: PG_URI,
 });
 
-module.exports = pool;
+
 
 // CREATE TABLE project (
 //   _id SERIAL PRIMARY KEY,
@@ -58,3 +58,10 @@ module.exports = pool;
 // JOIN task ON subTask.taskId = task._id
 // JOIN project ON task.projectId = project._id
 // WHERE project._id = 1;
+
+module.exports = {
+  query: (text, params, callback) => {
+    console.log('executed query', text);
+    return pool.query(text, params, callback);
+  }
+};
