@@ -36,7 +36,7 @@ const TasksContainer = () => {
         </FormGroup>
       </div>
       <hr />
-      <section className="CardGrid">
+      <section className="cardGrid">
         {cards.map((card, i) => (
           <TaskCard key={i} card={card} />
         ))}
