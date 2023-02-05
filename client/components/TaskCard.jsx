@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import SubTask from './SubTask.jsx';
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
 
 const TaskCard = ({ card }) => {
   const [subTasks, setSubTasks] = useState([]);
@@ -24,15 +31,20 @@ const TaskCard = ({ card }) => {
     //     <SubTask subHi={"subHi"} />
     //   </ul>
     // </div>
-    <Card sx={{ minWidth: 200 }}>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          {card}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }}>Mini Tasks</Typography>
-        <Button>Add Mini Task</Button>
-      </CardContent>
-    </Card>
+    <div className="cardContainer">
+      <Card sx={{ minWidth: 200 }}>
+        <CardContent>
+          <Typography variant="h5" component="div">
+            {card}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }}>
+            Sub Tasks
+            <FormControlLabel control={<Checkbox />} />
+          </Typography>
+          <Button>Add Mini Task</Button>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
