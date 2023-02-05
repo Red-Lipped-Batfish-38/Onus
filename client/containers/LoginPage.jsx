@@ -20,7 +20,7 @@ const Login = () => {
           <input type="text" id="userName"></input>
           <label for="password">Password: </label>
           <input type="text" id="password"></input>
-          <Link to="/homepage">
+          <Link to="/homepage/user/2">
             to homepage
             {/* <button type="button" onClick={redirectHomepage}></button> */}
           </Link>

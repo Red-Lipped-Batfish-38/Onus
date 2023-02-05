@@ -1,16 +1,18 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-
+import { Routes, Route, Link, useParams } from 'react-router-dom';
+import Project from '../components/Project.jsx';
+import TasksContainer from '../containers/TasksContainer.jsx';
 import Login from '../containers/LoginPage.jsx';
 // import '../styles.scss';
 import HomeContainer from '../containers/HomePage.jsx';
-import Navbar from './Navbar.jsx';
+import NavbarMain from './NavbarMain.jsx';
 
 const App = () => {
+  const { userID } = useParams();
   return (
     <div>
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
-      <Navbar className="navbar" />
+      <NavbarMain className="navbar-main" />
       <h1>WELCOME</h1>
       <Routes>
         {/* Auto load to Login page/> */}
@@ -18,18 +20,19 @@ const App = () => {
         {/* <Route exact path="/signup" element={<Signup />} /> */}
         <Route
           exact
-          path="/homepage/user/:user_id"
+          path={`/homepage/user/:userID`}
           element={<HomeContainer />}
         />
+        {/* <Route path=":userId" element={<ProfilePage />} /> */}
         <Route
           exact
-          path="user/:user_id/project/:project_id/"
-          element={<Project />}
+          path={`user/:userID/project/:projectID/task/:taskID`}
+          element={<TasksContainer />}
         />
         <Route
           exact
-          path="user/:user_id/project/:project_id/task/:task_id"
-          element={<TasksContainer />}
+          path={`user/:userID/project/:projectID`}
+          element={<Project />}
         />
       </Routes>
     </div>

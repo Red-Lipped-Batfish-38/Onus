@@ -3,9 +3,7 @@ $primary-dark: rgb(40, 40, 40);
 
 body {
   background-color: gray;
-}
-nav {
-  outline: 1px solid red;
+  margin: 0;
 }
 .indexForm {
   border-style: double;
@@ -27,4 +25,15 @@ nav {
   li {
     text-decoration: none;
   }
+}
+
+#taskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: center;
 }

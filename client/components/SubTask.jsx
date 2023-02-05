@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const MiniTasks = () => {
+const SubTask = ({ subHi }) => {
   return (
     <li>
       <label>
         <span className="checkbox"></span>
       </label>
-      <span className="content">Insert Mini-task Here</span>
+      <span className="content">{subHi}</span>
     </li>
   );
 };
 
-export default MiniTasks;
+export default SubTask;
