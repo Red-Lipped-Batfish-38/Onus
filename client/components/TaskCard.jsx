@@ -6,13 +6,13 @@ const TaskCard = ({ hi }) => {
   const [subTasks, setSubTasks] = useState([]);
 
   return (
-    <div>
+    <div style={{ backgroundColor: 'blue' }}>
       <h3>{hi}</h3>
       <ul>
         {/* {subTasks.map((subTask, i) => (
           <SubTask key={i} subTask={subTask} />
         ))} */}
-        <SubTask subHi={"subHi"} />
+        <SubTask subHi={'subHi'} />
       </ul>
     </div>
     // <Card sx={{ minWidth: 275 }}>

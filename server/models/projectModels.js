@@ -1,13 +1,12 @@
 const { Pool } = require('pg');
 //const key = process.env.SECRET_KEY;
 //require('dotenv').config();
-const PG_URI =  "postgres://xqoadpix:b7BZyQbOkIKJ8jlthG3c2Cl6tJWUaCg1@hansken.db.elephantsql.com/xqoadpix";
+const PG_URI =
+  'postgres://xqoadpix:b7BZyQbOkIKJ8jlthG3c2Cl6tJWUaCg1@hansken.db.elephantsql.com/xqoadpix';
 
 const pool = new Pool({
   connectionString: PG_URI,
 });
-
-
 
 // CREATE TABLE project (
 //   _id SERIAL PRIMARY KEY,
@@ -63,5 +62,5 @@ module.exports = {
   query: (text, params, callback) => {
     console.log('executed query', text);
     return pool.query(text, params, callback);
-  }
+  },
 };
