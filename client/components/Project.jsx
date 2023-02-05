@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useParams } from 'react-router-dom';
 
 import TasksContainer from '../containers/TasksContainer.jsx';
 //use params the endpoint for id url
@@ -9,12 +9,14 @@ import TasksContainer from '../containers/TasksContainer.jsx';
 //TODO: connect to router first
 
 const Project = () => {
+  const { userID, projectID } = useParams();
   return (
     <div>
       <h3>this is project</h3>
       {/* link to tasks */}
-      <TasksContainer />
-      {}
+      <p>userid: {userID}</p>
+      <p>projectid: {projectID}</p>
+      <Link to="/user/1/project/3/task/4">Open Tasks</Link>
     </div>
   );
 };

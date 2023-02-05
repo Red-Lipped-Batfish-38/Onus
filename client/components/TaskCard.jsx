@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import MiniTasks from './MiniTasks.jsx';
+import SubTask from './SubTask.jsx';
 import { Card } from '@mui/material';
 
-const Todos = () => {
+const TaskCard = ({ hi }) => {
+  const [subTasks, setSubTasks] = useState([]);
+
   return (
     <div>
-      <h3>Dynamically Created Title</h3>
+      <h3>{hi}</h3>
       <ul>
-        <MiniTasks />
+        {/* {subTasks.map((subTask, i) => (
+          <SubTask key={i} subTask={subTask} />
+        ))} */}
+        <SubTask subHi={"subHi"} />
       </ul>
     </div>
     // <Card sx={{ minWidth: 275 }}>
@@ -15,7 +20,7 @@ const Todos = () => {
     //     <Typography variant="h5" component="div">
     //       Task Name
     //     </Typography>
-    //     <Typography sx={{ mb: 1.5 }} color="text.secondary">
+    //     <Typography sx={{ mb: 1.5 }} color="text.secndary">
     //       Mini Tasks
     //     </Typography>
     //   </CardContent>
@@ -23,4 +28,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default TaskCard;
