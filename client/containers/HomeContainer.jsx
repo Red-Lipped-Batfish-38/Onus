@@ -21,7 +21,7 @@ const HomeContainer = () => {
   const handleSubmit = (e) => {
     console.log('projectInput:', projectInput);
     e.preventDefault();
-    if (projectInput.projectName === '') return;
+    // if (projectInput.projectName === '') return;
     //post request to add task to db
     fetch('http://localhost:3000/project/', {
       method: 'POST',
