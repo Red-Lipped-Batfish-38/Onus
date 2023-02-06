@@ -88,11 +88,14 @@ projectController.markTaskComplete = (req, res, next) => {
 };
 
 projectController.createTask = (req, res, next) => {
+  console.log(req.body);
   const { name, description, date, list, project, assigned, completed } =
-  JSON.parse(req.body);
+    JSON.parse(req.body);
 
   const text = `INSERT INTO task (taskName, taskDescription, dueDate, toDoList, projectId, assignedTo, completed) 
-    VALUES ('${name}', '${description}', '${date}', ${list}, ${project}, '${assigned}', ${completed})`;
+    VALUES ('${name}', '${description}', '${date}', ${Number(list)}, ${Number(
+    project
+  )}, '${assigned}', ${completed})`;
 
   db.query(text)
     .then((data) => {
@@ -105,19 +108,19 @@ projectController.createTask = (req, res, next) => {
 };
 
 projectController.getUsersForProject = (req, res, next) => {
-    const { project } = req.params;
-  
-    const text = `SELECT projectToUser.userid FROM projectToUser WHERE projectid = '${project}'`;
-  
-    db.query(text)
-      .then((data) => {
-        console.log(data.rows);
-        console.log('successfully grabbed users for project');
-        res.locals.users = data.rows;
-        next();
-      })
-      .catch((e) => console.log(e));
-  };
+  const { project } = req.params;
+
+  const text = `SELECT projectToUser.userid FROM projectToUser WHERE projectid = '${project}'`;
+
+  db.query(text)
+    .then((data) => {
+      console.log(data.rows);
+      console.log('successfully grabbed users for project');
+      res.locals.users = data.rows;
+      next();
+    })
+    .catch((e) => console.log(e));
+};
 
 projectController.getProjects = (req, res, next) => {
   //use email to get corresponding projects
@@ -125,37 +128,35 @@ projectController.getProjects = (req, res, next) => {
 
   const text = `SELECT projectToUser.projectid FROM projectToUser WHERE userid = '${email}'`;
 
-    db
-      .query(text)
-      .then(data => {
-        console.log(data.rows);
-        const projects = data.rows
-        console.log('successfully grabbed corresponding projects');
-        res.locals.projects = projects;
-        //console.log(res.locals.projects, 'this is current obj')
-        const newText = `SELECT * FROM project`;
-        db
-      .query(newText)
-      .then(allProjectData => {
-        //console.log(allProjectData.rows, 'this is all project data');
-        for(let i = 0; i < allProjectData.rows.length; i++){
-            for(const item of res.locals.projects){
-                if(item.projectid == allProjectData.rows[i]._id ){
-                    item.projectname = allProjectData.rows[i].projectname;
-                    item.projectdescription = allProjectData.rows[i].projectdescription
-                }
+  db.query(text)
+    .then((data) => {
+      console.log(data.rows);
+      const projects = data.rows;
+      console.log('successfully grabbed corresponding projects');
+      res.locals.projects = projects;
+      //console.log(res.locals.projects, 'this is current obj')
+      const newText = `SELECT * FROM project`;
+      db.query(newText)
+        .then((allProjectData) => {
+          //console.log(allProjectData.rows, 'this is all project data');
+          for (let i = 0; i < allProjectData.rows.length; i++) {
+            for (const item of res.locals.projects) {
+              if (item.projectid == allProjectData.rows[i]._id) {
+
+                item.projectName = allProjectData.rows[i].projectname;
+                item.projectDescription =
+
+                  allProjectData.rows[i].projectdescription;
+              }
             }
-        }
-        console.log(res.locals.projects, 'this is updated')
-        next();
-            
-      })
-      .catch(e => console.log(e));
-            
-      })
-      .catch(e => console.log(e));
-     
-  };
+          }
+          console.log(res.locals.projects, 'this is updated');
+          next();
+        })
+        .catch((e) => console.log(e));
+    })
+    .catch((e) => console.log(e));
+};
 
 projectController.getToDos = (req, res, next) => {
   const { project } = req.params;
@@ -189,20 +190,39 @@ projectController.getTasks = (req, res, next) => {
     .catch((e) => console.log(e));
 };
 
+projectController.getTaskByListId = (req, res, next) => {
+  const { id, project } = req.params;
+  console.log('get params for todolist', id, project);
+  const text = `SELECT * FROM task WHERE toDoList = ${id} AND projectid = ${project}`;
+
+  db.query(text)
+    .then((data) => {
+      //console.log(data);
+      const tasks = data.rows;
+      console.log('successfully grabbed tasks for corresponding project');
+      res.locals.tasks = tasks;
+      next();
+    })
+    .catch((e) => console.log(e));
+};
+
 projectController.deleteProject = (req, res, next) => {
-    const { project } = req.params;
-    const text = `DELETE FROM projectToUser WHERE projectid = ${project}`;
-  
-    db.query(text)
-      .then((data) => {
-        //console.log(data);
-        const deleted = data.rows;
-        console.log('successfully grabbed deleted project from projectToUser');
-        res.locals.deleted = {deleted, message: 'you have successfully deleted the project'};
-        
-        next();
-      })
-      .catch((e) => console.log(e));
-  };
+  const { project } = req.params;
+  const text = `DELETE FROM projectToUser WHERE projectid = ${project}`;
+
+  db.query(text)
+    .then((data) => {
+      //console.log(data);
+      const deleted = data.rows;
+      console.log('successfully grabbed deleted project from projectToUser');
+      res.locals.deleted = {
+        deleted,
+        message: 'you have successfully deleted the project',
+      };
+
+      next();
+    })
+    .catch((e) => console.log(e));
+};
 
 module.exports = projectController;

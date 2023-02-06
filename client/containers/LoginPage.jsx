@@ -43,15 +43,10 @@ const Login = ({ setIsLoggedIn }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.err) {
-          setLoginFailed(true);
-          return;
-        } else {
-          console.log('post req', result);
-          console.log('login OK');
-          setIsLoggedIn(true);
-          navigate('/homepage');
-        }
+        console.log('post req', result);
+        console.log('login OK');
+        setIsLoggedIn(true);
+        navigate('/homepage');
       })
       .catch((err) => {
         setLoginFailed(true); //same as setIsLogged In?

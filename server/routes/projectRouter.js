@@ -94,27 +94,38 @@ router.get(
   }
 );
 
+//get all tasks corresponding to a specific to do list
+router.get(
+  '/:project/task/:id',
+  accountController.checkUser,
+  projectController.getTaskByListId,
+  (req, res) => {
+    // console.log(res.locals);
+    return res.status(200).json(res.locals.tasks);
+  }
+);
+
 //get all users corresponding to a project
 router.get(
-    '/users/:project',
-    accountController.checkUser,
-    projectController.getUsersForProject,
-    accountController.getUserProjectCreds,
-    (req, res) => {
-      // console.log(res.locals);
-      return res.status(200).json(res.locals.users);
-    }
-  );
+  '/users/:project',
+  accountController.checkUser,
+  projectController.getUsersForProject,
+  accountController.getUserProjectCreds,
+  (req, res) => {
+    // console.log(res.locals);
+    return res.status(200).json(res.locals.users);
+  }
+);
 
-  //delete a project
-router.delete( 
-    '/:project',
-    accountController.checkUser,
-    projectController.deleteProject,
-    (req, res) => {
-      // console.log(res.locals);
-      return res.status(201).json(res.locals.deleted);
-    }
-  );
+//delete a project
+router.delete(
+  '/:project',
+  accountController.checkUser,
+  projectController.deleteProject,
+  (req, res) => {
+    // console.log(res.locals);
+    return res.status(201).json(res.locals.deleted);
+  }
+);
 
 module.exports = router;
