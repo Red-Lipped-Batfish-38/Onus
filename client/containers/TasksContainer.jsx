@@ -8,8 +8,9 @@ const TasksContainer = () => {
 
   const [cards, setTaskCards] = useState([]); //taskcards = []
   const [userInput, setUserInput] = useState({
-    taskInput: '',
-    descriptionInput: '',
+    name: '',
+    description: '',
+    project: project,
   });
   // useEffect(() => {}, []);
 
@@ -20,32 +21,20 @@ const TasksContainer = () => {
 
   //add a task to project
   const handleSubmit = (e) => {
+    console.log('userinput:', userInput);
     e.preventDefault();
-    if (!taskInput) return;
+    // if (!taskInput) return;
     //post request to add task to db
     fetch('http://localhost:3000/project/list', {
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify({
-        name: userInput.taskInput,
-        project,
-        description: userInput.descriptionInput,
-      }),
+      body: JSON.stringify(userInput),
     })
       .then((res) => res.json())
       .then((results) => {
         console.log('created new task res', results);
       })
-      .then(
-        setTaskCards([
-          ...cards,
-          {
-            name: taskInput,
-            project,
-            description: userInput.descriptionInput,
-          },
-        ])
-      );
+      .then(setTaskCards([...cards, userInput]));
   };
   //useEffect; makes a fetch request to get tasks
   useEffect(() => {
@@ -77,7 +66,7 @@ const TasksContainer = () => {
             onChange={(e) =>
               setUserInput({
                 ...userInput,
-                taskInput: e.target.value,
+                name: e.target.value,
               })
             }
           />
@@ -87,9 +76,9 @@ const TasksContainer = () => {
             sx={{ width: 400, height: 100 }}
             placeholder="Add Description"
             onChange={(e) =>
-              setTaskInput({
+              setUserInput({
                 ...userInput,
-                descriptionInput: e.target.value,
+                description: e.target.value,
               })
             }
           />

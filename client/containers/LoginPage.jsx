@@ -13,10 +13,10 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(false);
-    fetch('http://localhost:3000/account/logout', {
-      method: 'GET',
-      credentials: 'include',
-    });
+    // fetch('http://localhost:3000/account/logout', {
+    //   method: 'GET',
+    //   credentials: 'include',
+    // });
   }, []);
 
   const handleChange = (e) => {
@@ -60,9 +60,9 @@ const Login = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div>
-      <h2>sign in pl0x</h2>
-      <h1>this is form:</h1>
+    <div className="loginContainer">
+      {/* <h2>sign in pl0x</h2> */}
+      <h2>LOGIN</h2>
       <div className="loginForm form">
         {/* input form*/}
         {/* on submit, and verification, send to HomeContainer */}
@@ -71,7 +71,7 @@ const Login = ({ setIsLoggedIn }) => {
           <input
             type="text"
             id="email"
-            placeholder="Enter Email"
+            placeholder="Email"
             value={state.email}
             onChange={handleChange}
           ></input>
@@ -79,7 +79,7 @@ const Login = ({ setIsLoggedIn }) => {
           <input
             type="text"
             id="password"
-            placeholder="Enter Password"
+            placeholder="Password"
             value={state.password}
             onChange={handleChange}
           ></input>
@@ -93,7 +93,7 @@ const Login = ({ setIsLoggedIn }) => {
           </div>
         )}
       </div>
-      <Link to="/signup">to signup</Link>
+      <Link to="/signup">Sign up</Link>
       <br></br>
       {/* <Link to="/homepage/1">to homepage</Link> */}
     </div>
