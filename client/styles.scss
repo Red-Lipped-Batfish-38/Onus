@@ -5,9 +5,13 @@ $primary-light: #1f1f1f;
 $primary-text: #dadada;
 
 // %primary-light-gray: rgb();
-
+//sorry for the disorganized CSS
 html {
   background-color: $primary-dark;
+}
+
+h1 {
+  background-color: #a889c3;
 }
 
 // +++ APP.jsx +++
@@ -100,6 +104,7 @@ html {
     }
   }
 }
+//HOME CONTAINER & TASK CONTAINER
 
 #taskContainer {
   display: flex;
@@ -116,6 +121,7 @@ html {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-evenly;
+  background-color: #a889c3;
 
   .cardContainer {
     width: auto;
@@ -162,17 +168,26 @@ html {
   padding: 15px;
 }
 
-.projectHeader {
+.cardHeader {
   display: flex;
+  background-color: #a889c3;
   justify-content: center;
+  margin: 10px;
+  color: white;
 }
-
+.cardInput {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 .projectGrid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   justify-content: space-evenly;
+  background-color: #a889c3;
 
   .projectContainer {
+    display: flex;
     width: auto;
     // box-shadow: 5px 5px #414a4c;
     margin: 15px;
