@@ -6,7 +6,7 @@ projectController.createProject = (req, res, next) => {
   //grab number of entries for table
   const numText = `SELECT COUNT(*) FROM project`;
 
-  const { projectName, projectDescription } = req.body;
+  const { projectName, projectDescription } = JSON.parse(req.body);
 
   db.query(numText)
     .then((data) => {
@@ -39,7 +39,7 @@ projectController.createProject = (req, res, next) => {
 };
 
 projectController.addUserToProject = (req, res, next) => {
-  const { email, project } = req.body;
+  const { email, project } = JSON.parse(req.body);
 
   const text = `INSERT INTO projectToUser (projectId, userId) VALUES (${Number(
     project
@@ -73,7 +73,7 @@ projectController.createToDo = (req, res, next) => {
 };
 
 projectController.markTaskComplete = (req, res, next) => {
-  const { project, name } = req.body;
+  const { project, name } = JSON.parse(req.body);
 
   const text = `UPDATE task SET completed = true WHERE projectid = ${project} AND taskName = '${name}'`;
 
@@ -89,7 +89,7 @@ projectController.markTaskComplete = (req, res, next) => {
 
 projectController.createTask = (req, res, next) => {
   const { name, description, date, list, project, assigned, completed } =
-    req.body;
+  JSON.parse(req.body);
 
   const text = `INSERT INTO task (taskName, taskDescription, dueDate, toDoList, projectId, assignedTo, completed) 
     VALUES ('${name}', '${description}', '${date}', ${list}, ${project}, '${assigned}', ${completed})`;
@@ -103,6 +103,21 @@ projectController.createTask = (req, res, next) => {
     })
     .catch((e) => console.log(e));
 };
+
+projectController.getUsersForProject = (req, res, next) => {
+    const { project } = req.params;
+  
+    const text = `SELECT projectToUser.userid FROM projectToUser WHERE projectid = '${project}'`;
+  
+    db.query(text)
+      .then((data) => {
+        console.log(data.rows);
+        console.log('successfully grabbed users for project');
+        res.locals.users = data.rows;
+        next();
+      })
+      .catch((e) => console.log(e));
+  };
 
 projectController.getProjects = (req, res, next) => {
   //use email to get corresponding projects
@@ -159,7 +174,7 @@ projectController.getToDos = (req, res, next) => {
 };
 
 projectController.getTasks = (req, res, next) => {
-  const { project } = req.body;
+  const { project } = JSON.parse(req.body);
 
   const text = `SELECT * FROM task WHERE projectid = ${project}`;
 

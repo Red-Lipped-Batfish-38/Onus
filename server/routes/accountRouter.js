@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
 const accountController = require('../controllers/accountController');
 const sessionController = require('../controllers/sessionController');
 const cookieController = require('../controllers/cookieController');
 
+router.use(express.json());
 //create a new account 
 router.post('/', accountController.createAccount, 
                  cookieController.getSSIDCookie, 
@@ -28,7 +30,7 @@ router.post('/', accountController.createAccount,
                       sessionController.startSession,
   (req, res) => {
     //send status 200 and return ssid, equivalent to cookie set in browser
-    return res.status(200).json(res.locals.ssid);
+    return res.status(200).json(res.locals.correctEmail);
   });
 
 
