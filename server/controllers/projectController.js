@@ -57,7 +57,7 @@ projectController.addUserToProject = (req, res, next) => {
 };
 
 projectController.createToDo = (req, res, next) => {
-  const { name, project, description } = req.body;
+  const { name, project, description } = JSON.parse(req.body);
 
   const text = `INSERT INTO toDoList (name, projectId, description) VALUES ('${name}', ${project}, '${description}')`;
 
@@ -122,8 +122,7 @@ projectController.getProjects = (req, res, next) => {
 };
 
 projectController.getToDos = (req, res, next) => {
-  const { project } = req.body;
-
+  const { project } = req.params;
   const text = `SELECT * FROM toDoList WHERE projectid = ${project}`;
 
   db.query(text)
@@ -132,6 +131,7 @@ projectController.getToDos = (req, res, next) => {
       const toDos = data.rows;
       console.log('successfully grabbed todos for corresponding project');
       res.locals.toDos = { toDos };
+      console.log('todos from db', res.locals.toDos);
       next();
     })
     .catch((e) => console.log(e));
