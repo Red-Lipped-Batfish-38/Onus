@@ -15,7 +15,7 @@ router.post(
 );
 
 router.get(
-  '/',
+  '/:todolistId',
   // accountController.checkUser,
   subtaskController.getSubtask,
   (req, res) => {

@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Typography,
-  FormControlLabel,
-  Checkbox,
-  TextField,
-  FormGroup,
-  Button,
-} from '@mui/material';
+import { TextField, FormGroup, Button } from '@mui/material';
 // import { } from '@mui/material'; //added by erica, delete if we don't need
 
 import SubTask from '../components/SubTask.jsx';
 
 const SubTasksContainer = () => {
-  const { project, task } = useParams();
+  const { project, task } = useParams(); //both id
   const [subTasks, setSubTasks] = useState([]);
   const [subTaskInput, setSubTaskInput] = useState('');
 
@@ -41,9 +34,23 @@ const SubTasksContainer = () => {
         taskId: task, //unneccessary?
         completed: false,
       })
-        .then((data) =>
-          console.log('got back data from subtaskcontroller:', data)
-        )
+        .then((data) => {
+          data.json();
+        })
+        .then((results) => {
+          console.log('got back data from subtaskcontroller:', results);
+          setSubTasks([
+            ...subTasks,
+            {
+              subTaskName: subTaskInput,
+              subTaskDescription: 'I dunno what to put here', //unneccessary?
+              subTaskDueDate: '2-05-2025',
+              toDoListId: task,
+              taskId: task, //unneccessary?
+              completed: false,
+            },
+          ]);
+        })
         .catch((err) => console.log(err)),
     });
   };
@@ -54,7 +61,7 @@ const SubTasksContainer = () => {
 
   //NO VALID RES FROM CONTROLLER/DB
   useEffect(() => {
-    fetch('http://localhost:3000/subtask', {
+    fetch(`http://localhost:3000/subtask/${task}`, {
       method: 'GET',
       credentials: 'include',
     })

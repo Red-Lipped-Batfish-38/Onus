@@ -9,25 +9,18 @@ import {
   CardActionArea,
 } from '@mui/material';
 
-const TaskCard = ({ card }, project) => {
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!subTaskInput) return;
-  //   addTasks(subTaskInput);
-  // };
-  // const addSubTasks = (newTask) => {
-  //   setSubTasks([...cards, newTask]);
-  // };
+// card =
+// {
+//   name: taskInput,
+//   project,
+//   description: userInput.descriptionInput,
+// },
 
+const TaskCard = ({ card }, project) => {
   return (
     <div>
       <div>
         <h3>Your tasks!!</h3>
-        {/* <ul>
-          {subTasks.map((subTask, i) => (
-            <SubTask key={i} subTask={subTask} />
-          ))}
-        </ul> */}
       </div>
       <div className="cardContainer" color="blue">
         <CardActionArea

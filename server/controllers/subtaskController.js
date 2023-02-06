@@ -50,7 +50,7 @@ subtaskController.addSubtask = (req, res, next) => {
 //on TaskCard render, the subtask list should populate
 subtaskController.getSubtask = (req, res, next) => {
   //need task id and maybe todolist id
-  const { taskId, todolistId } = JSON.parse(req.body);
+  const { taskId, todolistId } = JSON.parse(req.params);
   // const todolist_id = 2; //for testing purposes
   //grab subtasks from subtask table with corresponding todolist id
   const text = `SELECT * FROM subtask WHERE toDoListId = ${todolistId}`;
