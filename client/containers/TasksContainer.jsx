@@ -7,7 +7,10 @@ const TasksContainer = () => {
   const { project } = useParams();
 
   const [cards, setTaskCards] = useState([]); //taskcards = []
-  const [taskInput, setTaskInput] = useState('');
+  const [userInput, setUserInput] = useState({
+    taskInput: '',
+    descriptionInput: '',
+  });
   // useEffect(() => {}, []);
 
   //add taskInput into tasks array
@@ -18,16 +21,15 @@ const TasksContainer = () => {
   //add a task to project
   const handleSubmit = (e) => {
     e.preventDefault();
-    //SHOULD WE KEEP LINE 22.23?
     if (!taskInput) return;
     //post request to add task to db
     fetch('http://localhost:3000/project/list', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({
-        name: taskInput,
+        name: userInput.taskInput,
         project,
-        description: 'hoi, descrip for new task',
+        description: userInput.descriptionInput,
       }),
     })
       .then((res) => res.json())
@@ -40,7 +42,7 @@ const TasksContainer = () => {
           {
             name: taskInput,
             project,
-            description: 'hoi, descrip for new task',
+            description: userInput.descriptionInput,
           },
         ])
       );
@@ -57,8 +59,6 @@ const TasksContainer = () => {
         console.log('got the tsks goods', results);
         const tasksArr = results.toDos;
         setTaskCards([...tasksArr]);
-        // console.log('state proj', projects);
-        //task was added to db, now not displaying correctly. ASK NICK HOW TO DISPLAY
       });
   }, []);
 
@@ -74,9 +74,25 @@ const TasksContainer = () => {
             variant="outlined"
             sx={{ width: 400, height: 100 }}
             placeholder="Add Task"
-            onChange={(e) => setTaskInput(e.target.value)}
+            onChange={(e) =>
+              setUserInput({
+                ...userInput,
+                taskInput: e.target.value,
+              })
+            }
           />
-          {/* NEED TO ADD DESCIPRTION */}
+          <TextField
+            label="Add New Task Description"
+            variant="outlined"
+            sx={{ width: 400, height: 100 }}
+            placeholder="Add Description"
+            onChange={(e) =>
+              setTaskInput({
+                ...userInput,
+                descriptionInput: e.target.value,
+              })
+            }
+          />
           <Button onClick={handleSubmit}>+</Button>
         </FormGroup>
       </div>

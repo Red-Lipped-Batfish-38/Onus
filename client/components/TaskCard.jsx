@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SubTask from './SubTask.jsx';
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  CardActionArea,
+} from '@mui/material';
 
 const TaskCard = ({ card }, project) => {
   // const handleSubmit = (e) => {
@@ -24,18 +30,20 @@ const TaskCard = ({ card }, project) => {
         </ul> */}
       </div>
       <div className="cardContainer" color="blue">
-        <Card sx={{ minWidth: 200 }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {card.name}
-              <br></br>
-              {card.description}
-            </Typography>
-            <Link to={`/project/${card.projectid}/tasks/${card._id}`}>
-              Open Tasks
-            </Link>
-          </CardContent>
-        </Card>
+        <CardActionArea
+          component={Link}
+          to={`/project/${card.projectid}/tasks/${card._id}`}
+        >
+          <Card sx={{ minWidth: 200 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                {card.name}
+                <br></br>
+                {card.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </CardActionArea>
       </div>
     </div>
   );

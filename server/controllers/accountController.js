@@ -58,12 +58,11 @@ accountController.checkUserExists = (req, res, next) => {
     });
 };
 
-
 accountController.verifyUser = (req, res, next) => {
-  console.log((req.body), 'this is the req.body as-is');
+  console.log(req.body, 'this is the req.body as-is');
   //console.log(req)
   //user logs in with email and password
-  
+
   const { email, password } = JSON.parse(req.body);
 
   const controller = (passPhrase) => {
@@ -75,22 +74,20 @@ accountController.verifyUser = (req, res, next) => {
         //compare plaintext pw and encrypted
         bcrypt.compare(passPhrase, data[0].password, function (err, res) {
           console.log(res, 'this is the res');
-          if(res){
+          if (res) {
             res.locals.correctEmail = {
               email: email,
-              message: 'credentials are correct'
-            }
+              message: 'credentials are correct',
+            };
             return next();
-          }else {
+          } else {
             return next({
               log: 'Error occurred in the accountController.verifyUser middleware',
               status: 400,
               err: { err: 'The credentials are incorrect' },
-            })
+            });
           }
         });
-
-        
       })
       .catch((err) => {
         next({
@@ -158,31 +155,28 @@ accountController.addProjectToAccount = (req, res, next) => {
 
 //get information for individuals on account
 accountController.getUserProjectCreds = (req, res, next) => {
-  
   console.log('checking from adding creds from project');
-  for(let i = 0; i < res.locals.users.length; i++){
+  for (let i = 0; i < res.locals.users.length; i++) {
     const { userid } = res.locals.users[i];
     console.log(userid);
 
     Account.find({ email: userid })
-    .exec()
-    .then((data) => {
-      console.log('we got into the check individual user method');
-      //console.log(data);
-      const { firstName, lastName, email } = data[0];
-      res.locals.users[i].firstName = firstName;
-      res.locals.users[i].lastName = lastName;
-      console.log(res.locals.users[i])
-     
-    })
-    .catch((err) => {
-      next({
-        log: 'Error occurred in the accountController.checkUser middleware',
-        status: 400,
-        err: { err: 'Unknown cookie error' },
+      .exec()
+      .then((data) => {
+        console.log('we got into the check individual user method');
+        //console.log(data);
+        const { firstName, lastName, email } = data[0];
+        res.locals.users[i].firstName = firstName;
+        res.locals.users[i].lastName = lastName;
+        console.log(res.locals.users[i]);
+      })
+      .catch((err) => {
+        next({
+          log: 'Error occurred in the accountController.checkUser middleware',
+          status: 400,
+          err: { err: 'Unknown cookie error' },
+        });
       });
-    });
-
   }
   next();
 };
