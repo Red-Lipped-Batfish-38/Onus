@@ -189,4 +189,20 @@ projectController.getTasks = (req, res, next) => {
     .catch((e) => console.log(e));
 };
 
+projectController.deleteProject = (req, res, next) => {
+    const { project } = req.params;
+    const text = `DELETE FROM projectToUser WHERE projectid = ${project}`;
+  
+    db.query(text)
+      .then((data) => {
+        //console.log(data);
+        const deleted = data.rows;
+        console.log('successfully grabbed deleted project from projectToUser');
+        res.locals.deleted = {deleted, message: 'you have successfully deleted the project'};
+        
+        next();
+      })
+      .catch((e) => console.log(e));
+  };
+
 module.exports = projectController;

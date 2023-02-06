@@ -94,6 +94,7 @@ router.get(
   }
 );
 
+//get all users corresponding to a project
 router.get(
     '/users/:project',
     accountController.checkUser,
@@ -102,6 +103,17 @@ router.get(
     (req, res) => {
       // console.log(res.locals);
       return res.status(200).json(res.locals.users);
+    }
+  );
+
+  //delete a project
+router.delete( 
+    '/:project',
+    accountController.checkUser,
+    projectController.deleteProject,
+    (req, res) => {
+      // console.log(res.locals);
+      return res.status(201).json(res.locals.deleted);
     }
   );
 
