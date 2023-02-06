@@ -12,7 +12,7 @@ import LogoButton from './LogoButton.jsx';
 // import HomeButton from './HomeButton.jsx';
 // import { useState, useEffect } from 'react';
 
-function NavbarMain({ isLoggedIn }) {
+function NavbarMain({ isLoggedIn, setIsLoggedIn }) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container className="navBarBanner">
@@ -22,7 +22,10 @@ function NavbarMain({ isLoggedIn }) {
         <LogoButton />
         <Nav className="mr-auto p-3">
           {isLoggedIn ? (
-            <LogoutButton className="logoutButton" />
+            <LogoutButton
+              className="logoutButton"
+              setIsLoggedIn={setIsLoggedIn}
+            />
           ) : (
             <LoginButton />
           )}
