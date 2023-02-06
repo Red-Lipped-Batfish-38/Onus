@@ -31,7 +31,6 @@ accountController.createAccount = (req, res, next) => {
 accountController.checkUserExists = (req, res, next) => {
   console.log('in checkUserExists');
   //user logs in with email and password
-
   const { email } = req.body;
   console.log(email);
   Account.find({ email })
@@ -58,9 +57,8 @@ accountController.checkUserExists = (req, res, next) => {
     });
 };
 
-
 accountController.verifyUser = (req, res, next) => {
-  console.log((req.body), 'this is the req.body as-is');
+  console.log(req.body, 'this is the req.body as-is');
 
   //user logs in with email and password
   const { email, password } = req.body;
@@ -74,12 +72,10 @@ accountController.verifyUser = (req, res, next) => {
         //compare plaintext pw and encrypted
         bcrypt.compare(passPhrase, data[0].password, function (err, res) {
           console.log(res, 'this is the res');
-          if(res){
+          if (res) {
             return next();
           }
         });
-
-        
       })
       .catch((err) => {
         next({

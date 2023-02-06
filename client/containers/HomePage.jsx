@@ -37,7 +37,6 @@ const HomeContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //SHOULD WE KEEP LINE 22.23?
     if (projectInput.projectName === '') return;
     //post request to add task to db
     fetch('http://localhost:3000/project/', {
@@ -94,7 +93,6 @@ const HomeContainer = () => {
         ))}
       </div>
       {/* <Link to="/user/1/project/3/">Project{`${userID}`}</Link> */}
-      {/* createprojects button*/}
     </div>
   );
 };
