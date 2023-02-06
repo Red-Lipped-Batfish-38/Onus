@@ -21,14 +21,11 @@ const TaskCard = ({ card }, project) => {
 
   return (
     <div>
-      <div>
-        <h3>Your tasks!!</h3>
-        {/* <ul>
+      {/* <ul>
           {subTasks.map((subTask, i) => (
             <SubTask key={i} subTask={subTask} />
           ))}
         </ul> */}
-      </div>
       <div className="cardContainer" color="blue">
         <CardActionArea
           component={Link}
@@ -38,7 +35,8 @@ const TaskCard = ({ card }, project) => {
             <CardContent>
               <Typography variant="h5" component="div">
                 {card.name}
-                <br></br>
+              </Typography>
+              <Typography variant="p" component="div">
                 {card.description}
               </Typography>
             </CardContent>

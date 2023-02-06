@@ -34,6 +34,7 @@ const Project = ({ projectId, projectName, projectDescription }) => {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(addusers),
+      s,
     })
       .then((res) => res.json())
       .then((results) => {
@@ -73,7 +74,9 @@ const Project = ({ projectId, projectName, projectDescription }) => {
                   })
                 }
               />
-              <Button onClick={handleSubmit}>+</Button>
+              <Button onClick={handleSubmit} style={{ height: 56 }}>
+                +
+              </Button>
             </FormGroup>
           </CardContent>
         </Card>
