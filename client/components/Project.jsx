@@ -23,13 +23,13 @@ const Project = (project) => {
   return (
     <div className="projectContainer">
       <h3>this is project</h3>
-      {/* link to tasks */}
       {/* dummy */}
       <Card sx={{ minWidth: 200 }}>
-        <Link to="/user/1/project/3/task/4">Open Tasks</Link>
+        <Link to={`/tasks/${project.project}`}>Open Tasks</Link>
         <CardContent>
           <Typography variant="h5" component="div">
             Project {JSON.stringify(project.project)}
+            {/* why so ugly */}
           </Typography>
         </CardContent>
       </Card>
