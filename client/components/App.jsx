@@ -6,6 +6,7 @@ import Login from '../containers/LoginPage.jsx';
 import HomeContainer from '../containers/HomePage.jsx';
 import NavbarMain from './NavbarMain.jsx';
 import Signup from '../containers/SignupPage.jsx';
+import SubTasksContainer from '../containers/SubTasksContainer.jsx';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,8 +30,13 @@ const App = () => {
         />
         <Route exact path={`/homepage`} element={<HomeContainer />} />
         {/* <Route path=":userId" element={<ProfilePage />} /> */}
-        <Route exact path={`/tasks/:project`} element={<TasksContainer />} />
         <Route exact path={`/project`} element={<Project />} />
+        <Route exact path={`/project/:project`} element={<TasksContainer />} />
+        <Route
+          exact
+          path={`/project/:project/tasks/:task`}
+          element={<SubTasksContainer />}
+        />
       </Routes>
     </div>
   );
