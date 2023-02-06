@@ -94,4 +94,15 @@ router.get(
   }
 );
 
+router.get(
+    '/users/:project',
+    accountController.checkUser,
+    projectController.getUsersForProject,
+    accountController.getUserProjectCreds,
+    (req, res) => {
+      // console.log(res.locals);
+      return res.status(200).json(res.locals.users);
+    }
+  );
+
 module.exports = router;
