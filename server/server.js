@@ -35,6 +35,10 @@ app.use('/project', projectRouter);
 app.use('/subtask', subtaskRouter);
 // require controllers?
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/index.html'));
+});
+
 app.use((req, res) => {
   res.status(200).send('This page does not exist in real life...');
 });
