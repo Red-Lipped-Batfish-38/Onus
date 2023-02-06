@@ -64,7 +64,7 @@ const Login = ({ setIsLoggedIn }) => {
         <form>
           <label for="email">Email: </label>
           <input
-            type="text"
+            type="email"
             id="email"
             placeholder="Email"
             value={state.email}
@@ -72,7 +72,7 @@ const Login = ({ setIsLoggedIn }) => {
           ></input>
           <label for="password">Password: </label>
           <input
-            type="text"
+            type="password"
             id="password"
             placeholder="Password"
             value={state.password}

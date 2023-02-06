@@ -73,7 +73,7 @@ const Signup = ({ setIsLoggedIn }) => {
           />
           <label for="email">Email: </label>
           <input
-            type="text"
+            type="email"
             id="email"
             placeholder="Email"
             value={state.email}
@@ -81,7 +81,7 @@ const Signup = ({ setIsLoggedIn }) => {
           />
           <label for="password">Password: </label>
           <input
-            type="text"
+            type="password"
             id="password"
             placeholder="Password"
             value={state.password}
@@ -92,7 +92,7 @@ const Signup = ({ setIsLoggedIn }) => {
           </button>
         </form>
       </div>
-      <Link to="/">Login</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 };
