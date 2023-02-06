@@ -77,7 +77,7 @@ const Login = ({ setIsLoggedIn }) => {
           ></input>
           <label for="password">Password: </label>
           <input
-            type="text"
+            type="password"
             id="password"
             placeholder="Password"
             value={state.password}

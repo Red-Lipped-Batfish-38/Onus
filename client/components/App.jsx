@@ -13,9 +13,13 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { userID } = useParams();
   return (
-    <div className='appContainer'>
+    <div className="appContainer">
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
-      <NavbarMain className="navbar-main" isLoggedIn={isLoggedIn} />
+      <NavbarMain
+        className="navbar-main"
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Routes>
         {/* Auto load to Login page/> */}
         <Route exact path="/" element={<MainPage />} />
