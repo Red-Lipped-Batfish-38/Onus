@@ -1,54 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SubTask from './SubTask.jsx';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  FormControlLabel,
-  Checkbox,
-} from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 
-import { TextField, FormGroup } from '@mui/material'; //added by erica, delete if we don't need
-
-const TaskCard = ({ card }) => {
-  const [subTasks, setSubTasks] = useState([]);
-  const [subTaskInput, setSubTaskInput] = useState('');
-
-  const handleSubtaskSubmit = (e) => {
-    e.preventDefault();
-    console.log(
-      'right now there is no add mini task input...needs to be added'
-    );
-    if (!subTaskInput) return;
-    addSubTasks(subTaskInput);
-
-    //fetch POST request to post subtasks when the add mini task button is clicked
-    fetch('/subtask', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      body: JSON.stringify({
-        //this should send this for post
-        subTaskName: 'subtask test',
-        subTaskDescription: 'I dunno what to put here',
-        subTaskDueDate: '2-05-2025',
-        toDoListId: 3,
-        taskId: 2,
-        completed: false,
-      })
-        .then((data) =>
-          console.log('got back data from subtaskcontroller:', data)
-        )
-        .catch((err) => console.log(err)),
-    });
-  };
-
-  const addSubTasks = (newSubTask) => {
-    setSubTasks([...subTasks, newSubTask]); //**why do you need ...card? */
-  };
-
+const TaskCard = ({ card }, project) => {
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   if (!subTaskInput) return;
@@ -62,12 +17,11 @@ const TaskCard = ({ card }) => {
     <div>
       <div>
         <h3>Your tasks!!</h3>
-        <ul>
+        {/* <ul>
           {subTasks.map((subTask, i) => (
             <SubTask key={i} subTask={subTask} />
           ))}
-          {/* <SubTask subHi={"subHi"} /> */}
-        </ul>
+        </ul> */}
       </div>
       <div className="cardContainer" color="blue">
         <Card sx={{ minWidth: 200 }}>
@@ -77,20 +31,9 @@ const TaskCard = ({ card }) => {
               <br></br>
               {card.description}
             </Typography>
-            <Typography sx={{ mb: 1.5 }}>
-              Sub Tasks
-              <FormControlLabel control={<Checkbox />} />
-            </Typography>
-            <FormGroup row>
-              <TextField
-                label="Add New Task"
-                variant="outlined"
-                sx={{ width: 400, height: 100 }}
-                placeholder="Add Task"
-                onChange={(e) => setSubTaskInput(e.target.value)}
-              />
-              <Button onClick={handleSubtaskSubmit}>Add Mini Task</Button>
-            </FormGroup>
+            <Link to={`/project/${card.projectid}/tasks/${card._id}`}>
+              Open Tasks
+            </Link>
           </CardContent>
         </Card>
       </div>

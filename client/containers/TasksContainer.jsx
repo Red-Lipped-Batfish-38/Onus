@@ -47,14 +47,14 @@ const TasksContainer = () => {
   };
   //useEffect; makes a fetch request to get tasks
   useEffect(() => {
-    console.log('tasks container mounted', project);
+    console.log('tasks container mounted', project); //typeof proj :string
     fetch(`http://localhost:3000/project/list/${project}`, {
       method: 'GET',
       credentials: 'include',
     })
       .then((res) => res.json())
       .then((results) => {
-        console.log('got the goods', results);
+        console.log('got the tsks goods', results);
         const tasksArr = results.toDos;
         setTaskCards([...tasksArr]);
         // console.log('state proj', projects);

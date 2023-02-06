@@ -95,7 +95,6 @@ const HomeContainer = () => {
       </div>
       {/* <Link to="/user/1/project/3/">Project{`${userID}`}</Link> */}
       {/* createprojects button*/}
-      <Link to="/">Login</Link>
     </div>
   );
 };

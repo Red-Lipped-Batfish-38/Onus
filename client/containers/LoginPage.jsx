@@ -58,7 +58,7 @@ const Login = ({ setIsLoggedIn }) => {
     <div>
       <h2>sign in pl0x</h2>
       <h1>this is form:</h1>
-      <div className="loginForm">
+      <div className="loginForm form">
         {/* input form*/}
         {/* on submit, and verification, send to HomeContainer */}
         <form>
@@ -85,7 +85,7 @@ const Login = ({ setIsLoggedIn }) => {
       </div>
       <Link to="/signup">to signup</Link>
       <br></br>
-      <Link to="/homepage/1">to homepage</Link>
+      {/* <Link to="/homepage/1">to homepage</Link> */}
     </div>
   );
 };
