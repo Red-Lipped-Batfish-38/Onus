@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 //Includes user login, link to sign up, on sign in, route to HomeContainer
 const Login = ({ setIsLoggedIn }) => {
   const [state, setState] = useState({ email: '', password: '' });
+  const [loginFailed, setLoginFailed] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(false);
@@ -34,9 +35,7 @@ const Login = ({ setIsLoggedIn }) => {
       password: state.password,
     };
     // console.log(userLogin); //OK
-    //make a post request
-    //check correct path
-    //does not set any cookies @ login w/ {erica@erica.com, something}
+
     fetch('http://localhost:3000/account/log', {
       method: 'POST',
       credentials: 'include',
@@ -44,10 +43,15 @@ const Login = ({ setIsLoggedIn }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log('post req', result);
-        console.log('login OK');
-        setIsLoggedIn(true);
-        navigate('/homepage');
+        if (!result.err) {
+          console.log('post req', result);
+          console.log('login OK');
+          setIsLoggedIn(true);
+          navigate('/homepage');
+        } else {
+          setLoginFailed(true); //same as setIsLogged In?
+          console.log('There was a problem verifying user');
+        }
       })
       .catch((err) => {
         console.log('err at login');
@@ -82,6 +86,11 @@ const Login = ({ setIsLoggedIn }) => {
             Login
           </button>
         </form>
+        {loginFailed && (
+          <div className="loginFail">
+            <p style={{ color: 'red' }}>Incorrect Login</p>
+          </div>
+        )}
       </div>
       <Link to="/signup">to signup</Link>
       <br></br>
