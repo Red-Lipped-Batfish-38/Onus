@@ -7,22 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import LogoutButton from './LogoutButton.jsx';
 import { useState, useEffect } from 'react';
 
-function NavbarMain() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/account', {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //   })
-  //     .then((user) => {
-  //       user ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log('There is an error');
-  //     });
-  // }, []);
-
+function NavbarMain({ isLoggedIn }) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -33,7 +18,7 @@ function NavbarMain() {
           <Nav.Link className="fs-4" to="/account">
             About Us
           </Nav.Link>
-          {/* {isLoggedIn ? <LogoutButton /> : <Link to="/">Login</Link>} */}
+          {isLoggedIn ? <LogoutButton /> : null}
         </Nav>
       </Container>
     </Navbar>

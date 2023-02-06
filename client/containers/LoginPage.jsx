@@ -7,9 +7,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //{email and password} mongo
 //Includes user login, link to sign up, on sign in, route to HomeContainer
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [state, setState] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  useEffect(() => {
+    setIsLoggedIn(false);
+  }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -39,6 +42,7 @@ const Login = () => {
       .then((result) => {
         console.log('post req', result);
         console.log('login OK');
+        setIsLoggedIn(true);
         navigate('/homepage');
       })
       .catch((err) => {
