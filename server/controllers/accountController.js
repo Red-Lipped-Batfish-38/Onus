@@ -76,7 +76,7 @@ accountController.verifyUser = (req, res, next) => {
             //compare plaintext pw and encrypted
             bcrypt.compare(passPhrase, data[0].password, function(err, res) {
               console.log(res, 'this is the res');
-              if(err){
+              if(!res){
                 return next({
                     log: 'Error occurred in the accountController.verifyUser middleware',
                     status: 400,
