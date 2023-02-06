@@ -9,34 +9,39 @@ import {
   CardActionArea,
 } from '@mui/material';
 
-// card =
-// {
-//   name: taskInput,
-//   project,
-//   description: userInput.descriptionInput,
-// },
-//SUB TASK ARE NOT INCORPORATED
 const TaskCard = ({ card }, project) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!subTaskInput) return;
+  //   addTasks(subTaskInput);
+  // };
+  // const addSubTasks = (newTask) => {
+  //   setSubTasks([...cards, newTask]);
+  // };
+
   return (
     <div>
-      <div>
-        <h3>Your tasks!!</h3>
-      </div>
+      {/* <ul>
+          {subTasks.map((subTask, i) => (
+            <SubTask key={i} subTask={subTask} />
+          ))}
+        </ul> */}
       <div className="cardContainer" color="blue">
-        {/* <CardActionArea
+        <CardActionArea
           component={Link}
           to={`/project/${card.projectid}/tasks/${card._id}`}
-        > */}
-        <Card sx={{ minWidth: 200 }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {card.name}
-              <br></br>
-              {card.description}
-            </Typography>
-          </CardContent>
-        </Card>
-        {/* </CardActionArea> */}
+        >
+          <Card sx={{ minWidth: 200 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                {card.name}
+              </Typography>
+              <Typography variant="p" component="div">
+                {card.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </CardActionArea>
       </div>
     </div>
   );
