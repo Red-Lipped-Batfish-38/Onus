@@ -3,10 +3,11 @@ import { Routes, Route, Link, useParams } from 'react-router-dom';
 import Project from '../components/Project.jsx';
 import TasksContainer from '../containers/TasksContainer.jsx';
 import Login from '../containers/LoginPage.jsx';
-import HomeContainer from '../containers/HomePage.jsx';
+import HomeContainer from '../containers/HomeContainer.jsx';
 import NavbarMain from './NavbarMain.jsx';
 import Signup from '../containers/SignupPage.jsx';
 import SubTasksContainer from '../containers/SubTasksContainer.jsx';
+import MainPage from '../containers/MainPage.jsx';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,9 +18,10 @@ const App = () => {
       <NavbarMain className="navbar-main" isLoggedIn={isLoggedIn} />
       <Routes>
         {/* Auto load to Login page/> */}
+        <Route exact path="/" element={<MainPage />} />
         <Route
           exact
-          path="/"
+          path="/login"
           element={<Login setIsLoggedIn={setIsLoggedIn} />}
         />
         <Route
