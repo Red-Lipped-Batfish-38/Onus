@@ -43,17 +43,18 @@ const Login = ({ setIsLoggedIn }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (!result.err) {
+        if (result.err) {
+          setLoginFailed(true);
+          return;
+        } else {
           console.log('post req', result);
           console.log('login OK');
           setIsLoggedIn(true);
           navigate('/homepage');
-        } else {
-          setLoginFailed(true); //same as setIsLogged In?
-          console.log('There was a problem verifying user');
         }
       })
       .catch((err) => {
+        setLoginFailed(true); //same as setIsLogged In?
         console.log('err at login');
       });
   };
