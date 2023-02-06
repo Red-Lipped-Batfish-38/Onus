@@ -26,7 +26,7 @@ const Project = (project) => {
   return (
     <div className="projectContainer">
       {/* dummy */}
-      <CardActionArea component={RouterLink} to={`/tasks/${project.project}`}>
+      <CardActionArea component={RouterLink} to={`/project/${project.project}`}>
         <Card sx={{ minWidth: 200 }}>
           {/* this should be a dynamically created title*/}
           <CardContent>
