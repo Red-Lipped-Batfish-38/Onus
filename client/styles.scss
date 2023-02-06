@@ -1,22 +1,17 @@
 $primary-color: #a889c3;
-$primary-dark: rgb(40, 40, 40);
+$primary-color-dark: lighten ($primary-color, -30%);
+$primary-dark: #121212;
+$primary-light: #1f1f1f;
+$primary-text: #dadada;
+
 // %primary-light-gray: rgb();
 
-body {
-  background-color: gray;
-  margin: 0;
-}
-.indexForm {
-  border-style: double;
-  border-color: pink;
+html {
+  background-color: $primary-dark;
 }
 
-// Navbar {
-//   outline: 1px solid red;
-// }
+// +++ NAVBAR +++
 .navbar {
-  // outline: 1px solid red;
-  background-color: #a889c3;
   height: 60px;
   width: 100%;
   margin: 0;
@@ -52,6 +47,57 @@ body {
   transition: ease, 0.7s;
 }
 
+// +++ LOGIN && SIGN UP +++
+.loginContainer,
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    padding-top: 30px;
+  }
+  a {
+    color: $primary-text;
+    text-decoration: none;
+    font-size: 1.4em;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+
+    label {
+      padding: 10px;
+    }
+    input {
+      background-color: lighten($primary-light, 10%);
+      color: darken($primary-text, 30%);
+      border: none;
+      border-radius: 4px;
+      height: 30px;
+      border: 5px solid lighten($primary-light, 10%);
+      padding: 15px 5px;
+    }
+    button {
+      background-color: $primary-light;
+      border: none;
+      margin-top: 10px;
+      height: 40px;
+      width: 100px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      color: $primary-text;
+    }
+  }
+}
+
+// +++ APP.jsx +++
+.appContainer {
+  background-color: $primary-dark;
+  color: $primary-text;
+}
+
 #taskContainer {
   display: flex;
   flex-direction: column;
@@ -74,8 +120,4 @@ body {
     margin: 15px;
     border-radius: 5px;
   }
-}
-.form {
-  display: flex;
-  flex-direction: column;
 }
