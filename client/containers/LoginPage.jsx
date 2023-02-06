@@ -12,7 +12,6 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(false);
-    //clears any cookies
     fetch('http://localhost:3000/account/logout', {
       method: 'GET',
       credentials: 'include',

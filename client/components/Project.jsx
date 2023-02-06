@@ -19,13 +19,13 @@ import {
 const Project = (project) => {
   // const initalState = undefined;
   // const { userID, projectID } = useParams();
-  console.log(project);
+  console.log('passed into proj component', project);
   return (
     <div className="projectContainer">
       <h3>this is project</h3>
       {/* dummy */}
       <Card sx={{ minWidth: 200 }}>
-        <Link to={`/tasks/${project.project}`}>Open Tasks</Link>
+        <Link to={`/project/${project.project}`}>Open Tasks</Link>
         <CardContent>
           <Typography variant="h5" component="div">
             Project {JSON.stringify(project.project)}
