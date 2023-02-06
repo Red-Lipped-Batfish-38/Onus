@@ -52,7 +52,7 @@ const HomeContainer = () => {
     <div>
       <div>
         <header className="projectHeader">
-          <h1>Your Projects</h1>
+          <h1>YOUR PROJECTS</h1>
         </header>
         <div className="projectInput">
           <FormGroup row>
