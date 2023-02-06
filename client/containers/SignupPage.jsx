@@ -51,7 +51,7 @@ const Signup = ({ setIsLoggedIn }) => {
       });
   };
   return (
-    <div>
+    <div className="signUpContainer">
       <h2>SIGN UP</h2>
       <div className="signupForm form">
         <form>
@@ -59,7 +59,7 @@ const Signup = ({ setIsLoggedIn }) => {
           <input
             type="text"
             id="fname"
-            placeholder="Enter your first name"
+            placeholder="First name"
             value={state.fname}
             onChange={handleChange}
           />
@@ -67,7 +67,7 @@ const Signup = ({ setIsLoggedIn }) => {
           <input
             type="text"
             id="lname"
-            placeholder="Enter your last name"
+            placeholder="Last name"
             value={state.lname}
             onChange={handleChange}
           />
@@ -75,15 +75,15 @@ const Signup = ({ setIsLoggedIn }) => {
           <input
             type="text"
             id="email"
-            placeholder="Enter email"
+            placeholder="Email"
             value={state.email}
             onChange={handleChange}
           />
-          <label for="password">New Password: </label>
+          <label for="password">Password: </label>
           <input
             type="text"
             id="password"
-            placeholder="Enter your password"
+            placeholder="Password"
             value={state.password}
             onChange={handleChange}
           />
@@ -92,7 +92,7 @@ const Signup = ({ setIsLoggedIn }) => {
           </button>
         </form>
       </div>
-      <Link to="/">to main page</Link>
+      <Link to="/">Login</Link>
     </div>
   );
 };
