@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginButton from '../components/LoginButton.jsx';
 
 const MainPage = () => {
   return (
@@ -7,6 +8,7 @@ const MainPage = () => {
       <p>Beautiful image here</p>
       <p>Eloquent product blurb here</p>
       {/* login link should be in the nav bar */}
+      <LoginButton />
     </div>
   );
 };
