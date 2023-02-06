@@ -6,7 +6,7 @@ const accountController = {};
 accountController.createAccount = (req, res, next) => {
   // -->
   console.log('we are currently in account controller create account');
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password } = JSON.parse(req.body);
   //console.log(req.body)
   console.log(firstName, lastName, email, password, 'checking credentials');
   if (!firstName || !lastName || !email || !password) {
@@ -15,7 +15,7 @@ accountController.createAccount = (req, res, next) => {
   Account.create({ firstName, lastName, email, password })
     .then((data) => {
       console.log('We got into the account creation method');
-      //res.locals.newUser = data[0];
+      res.locals.newUser = data;
       console.log(data);
       next();
     })

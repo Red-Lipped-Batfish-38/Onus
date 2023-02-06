@@ -51,7 +51,7 @@ const TasksContainer = () => {
         // console.log('state proj', projects);
         //task was added to db, now not displaying correctly. ASK NICK HOW TO DISPLAY
       });
-  }, []);
+  }, [cards]);
 
   return (
     <div id="taskContainer">
