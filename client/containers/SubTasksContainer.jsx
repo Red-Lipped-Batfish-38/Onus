@@ -1,60 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Typography,
-  FormControlLabel,
-  Checkbox,
-  TextField,
-  FormGroup,
-  Button,
-} from '@mui/material';
+import { TextField, FormGroup, Button } from '@mui/material';
 // import { } from '@mui/material'; //added by erica, delete if we don't need
 
 import SubTask from '../components/SubTask.jsx';
 
 const SubTasksContainer = () => {
-  const { project, task } = useParams();
+  const { project, task } = useParams(); //both id
   const [subTasks, setSubTasks] = useState([]);
-  const [subTaskInput, setSubTaskInput] = useState('');
+  const [subTaskInputs, setSubTaskInputs] = useState({
+    name: '',
+    description: 'dummy description',
+    date: '2025-12-12',
+    list: task,
+    project,
+    assigned: '',
+    completed: false,
+  });
 
   const handleSubtaskSubmit = (e) => {
     e.preventDefault();
-    // console.log(
-    //   'right now there is no add mini task input...needs to be added'
-    // );
-    if (!subTaskInput) return;
-    addSubTasks(subTaskInput);
 
+    console.log('tosend this in post', subTaskInputs);
     //fetch POST request to post subtasks when the add mini task button is clicked
-    fetch('http://localhost:3000/subtask', {
+    fetch('http://localhost:3000/project/task', {
       method: 'POST',
       credentials: 'include',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      body: JSON.stringify({
-        //this should send this for post
-        subTaskName: subTaskInput,
-        subTaskDescription: 'I dunno what to put here', //unneccessary?
-        subTaskDueDate: '2-05-2025',
-        toDoListId: task,
-        taskId: task, //unneccessary?
-        completed: false,
+      body: JSON.stringify(subTaskInputs),
+    })
+      .then((res) => {
+        res.json();
       })
-        .then((data) =>
-          console.log('got back data from subtaskcontroller:', data)
-        )
-        .catch((err) => console.log(err)),
-    });
+      .then((results) => {
+        console.log('post task obj', results);
+        setSubTasks([...subTasks, results]);
+      })
+      .catch((err) => console.log(err));
   };
 
   const addSubTasks = (newSubTask) => {
     setSubTasks([...subTasks, newSubTask]); //**why do you need ...card? */
   };
 
-  //NO VALID RES FROM CONTROLLER/DB
   useEffect(() => {
-    fetch('http://localhost:3000/subtask', {
+    fetch(`http://localhost:3000/project/${project}/task/${task}`, {
       method: 'GET',
       credentials: 'include',
     })
@@ -63,7 +52,20 @@ const SubTasksContainer = () => {
         console.log('get subtasks', results);
         setSubTasks([...results]);
       });
-  }, []); //need to update so doesnt spam terminal
+  }, []);
+
+  //NO VALID RES FROM CONTROLLER/DB
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/subtask/${task}`, {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //   })
+  //     .then((res) => res.json())
+  //     .then((results) => {
+  //       console.log('get subtasks', results);
+  //       // setSubTasks([...results]);
+  //     });
+  // }, []); //need to update so doesnt spam terminal
 
   return (
     <div>
@@ -78,8 +80,37 @@ const SubTasksContainer = () => {
             variant="outlined"
             sx={{ width: 400, height: 100 }}
             placeholder="Add Task"
-            onChange={(e) => setSubTaskInput(e.target.value)}
+            onChange={(e) =>
+              setSubTaskInputs({
+                ...subTaskInputs,
+                name: e.target.value,
+              })
+            }
           />
+          <TextField
+            label="Add Assigned Contributor"
+            variant="outlined"
+            sx={{ width: 400, height: 100 }}
+            placeholder="Add email"
+            onChange={(e) =>
+              setSubTaskInputs({
+                ...subTaskInputs,
+                assigned: e.target.value,
+              })
+            }
+          />
+          {/* <TextField
+            label="Add New Task Due Date"
+            variant="outlined"
+            sx={{ width: 400, height: 100 }}
+            placeholder="Add Due Date [YYYY-MM-DD]"
+            onChange={(e) =>
+              setSubTaskInputs({
+                ...subTaskInputs,
+                subTaskDueDate: e.target.value,
+              })
+            }
+          /> */}
           <Button onClick={handleSubtaskSubmit}>Add Sub Task</Button>
         </FormGroup>
       </div>

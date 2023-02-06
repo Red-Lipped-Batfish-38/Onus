@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-import { Card, CardContent, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
 
 const SubTask = ({ subTask }) => {
   return (
@@ -11,9 +17,9 @@ const SubTask = ({ subTask }) => {
         <CardContent>
           <Typography sx={{ mb: 1.5 }}>
             {/* Sub Tasks */}
-            {subTask.subTaskName}
-            {subTask.subTaskDescription}
-            {subTask.subTaskDueDate}
+            {subTask.name}
+            {/* {subTask.subTaskDescription} */}
+            {subTask.assigned}
             <FormControlLabel control={<Checkbox />} />
           </Typography>
         </CardContent>

@@ -88,11 +88,14 @@ projectController.markTaskComplete = (req, res, next) => {
 };
 
 projectController.createTask = (req, res, next) => {
+  console.log(req.body);
   const { name, description, date, list, project, assigned, completed } =
     JSON.parse(req.body);
 
   const text = `INSERT INTO task (taskName, taskDescription, dueDate, toDoList, projectId, assignedTo, completed) 
-    VALUES ('${name}', '${description}', '${date}', ${list}, ${project}, '${assigned}', ${completed})`;
+    VALUES ('${name}', '${description}', '${date}', ${Number(list)}, ${Number(
+    project
+  )}, '${assigned}', ${completed})`;
 
   db.query(text)
     .then((data) => {
@@ -139,8 +142,10 @@ projectController.getProjects = (req, res, next) => {
           for (let i = 0; i < allProjectData.rows.length; i++) {
             for (const item of res.locals.projects) {
               if (item.projectid == allProjectData.rows[i]._id) {
+
                 item.projectName = allProjectData.rows[i].projectname;
                 item.projectDescription =
+
                   allProjectData.rows[i].projectdescription;
               }
             }
@@ -180,6 +185,22 @@ projectController.getTasks = (req, res, next) => {
       const tasks = data.rows;
       console.log('successfully grabbed tasks for corresponding project');
       res.locals.tasks = { tasks };
+      next();
+    })
+    .catch((e) => console.log(e));
+};
+
+projectController.getTaskByListId = (req, res, next) => {
+  const { id, project } = req.params;
+  console.log('get params for todolist', id, project);
+  const text = `SELECT * FROM task WHERE toDoList = ${id} AND projectid = ${project}`;
+
+  db.query(text)
+    .then((data) => {
+      //console.log(data);
+      const tasks = data.rows;
+      console.log('successfully grabbed tasks for corresponding project');
+      res.locals.tasks = tasks;
       next();
     })
     .catch((e) => console.log(e));

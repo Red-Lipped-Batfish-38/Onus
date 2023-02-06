@@ -10,16 +10,16 @@ router.post(
   // accountController.checkUser,
   subtaskController.addSubtask,
   (req, res) => {
-    res.status(200).send(res.locals.subtask);
+    return res.status(200).json(res.locals.subtask);
   }
 );
 
 router.get(
-  '/',
+  '/:todolistId',
   // accountController.checkUser,
   subtaskController.getSubtask,
   (req, res) => {
-    res.status(200).send('gotta send a message from get subtasks');
+    return res.status(200).json(res.locals.subTaskArray);
   }
 );
 
