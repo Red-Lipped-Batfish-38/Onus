@@ -15,7 +15,6 @@ const App = () => {
     <div>
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
       <NavbarMain className="navbar-main" isLoggedIn={isLoggedIn} />
-      <h1>WELCOME</h1>
       <Routes>
         {/* Auto load to Login page/> */}
         <Route

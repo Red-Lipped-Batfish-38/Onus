@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useParams, useNavigate } from 'react-router-dom';
 
 import {
   Card,
@@ -8,6 +8,7 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
+  CardActionArea,
 } from '@mui/material';
 
 //use params the endpoint for id url
@@ -19,20 +20,24 @@ import {
 const Project = (project) => {
   // const initalState = undefined;
   // const { userID, projectID } = useParams();
-  console.log('passed into proj component', project);
+
+  console.log('project;', project);
+  console.log('project.project', project.project);
   return (
     <div className="projectContainer">
-      <h3>this is project</h3>
       {/* dummy */}
-      <Card sx={{ minWidth: 200 }}>
-        <Link to={`/project/${project.project}`}>Open Tasks</Link>
-        <CardContent>
-          <Typography variant="h5" component="div">
-            Project {JSON.stringify(project.project)}
-            {/* why so ugly */}
-          </Typography>
-        </CardContent>
-      </Card>
+      <CardActionArea component={RouterLink} to={`/tasks/${project.project}`}>
+        <Card sx={{ minWidth: 200 }}>
+          {/* this should be a dynamically created title*/}
+          <CardContent>
+            <h3>Dynamically Created Project Title Here</h3>
+            <Typography variant="h5" component="div">
+              Project {JSON.stringify(project.project)}
+              {/* why so ugly */}
+            </Typography>
+          </CardContent>
+        </Card>
+      </CardActionArea>
     </div>
   );
 };
