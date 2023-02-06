@@ -19,14 +19,15 @@ module.exports = {
       directory: path.resolve(__dirname, 'build'),
     },
     proxy: {
-      '/api' : 'http://localhost:3000',
+      '/api': 'http://localhost:3000',
       cookieDomainRewrite: 'localhost',
     },
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+    },
   },
   module: {
     rules: [

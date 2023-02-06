@@ -3,7 +3,9 @@ import TaskCard from '../components/TaskCard.jsx';
 import { TextField, FormGroup, Button } from '@mui/material';
 
 const TasksContainer = () => {
-  const [cards, setTaskCards] = useState([]);
+
+  const [cards, setTaskCards] = useState([]); //taskcards = []
+
   const [taskInput, setTaskInput] = useState('');
   // useEffect(() => {}, []);
 
@@ -21,7 +23,9 @@ const TasksContainer = () => {
   return (
     <div id="taskContainer">
       <header className="taskHeader">
-        <h1> TASKS</h1>
+      
+        <h1>TASKS</h1>
+
       </header>
       <div className="taskHeader">
         <FormGroup row>

@@ -55,8 +55,7 @@ accountController.checkUserExists = (req, res, next) => {
         status: 400,
         err: { err: 'Unknown error' },
       });
-    });
-};
+}
 
 accountController.verifyUser = (req, res, next) => {
   console.log(JSON.parse(req.body));
