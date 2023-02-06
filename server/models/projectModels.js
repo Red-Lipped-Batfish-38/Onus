@@ -2,7 +2,8 @@ const { Pool } = require('pg');
 //const key = process.env.SECRET_KEY;
 //require('dotenv').config();
 
-const PG_URI =  "postgres://uiziiixt:6qoAfgoyFy6N4K8Y_yXBFZEM2KuN-m0z@hansken.db.elephantsql.com/uiziiixt";
+const PG_URI =
+  'postgres://uiziiixt:6qoAfgoyFy6N4K8Y_yXBFZEM2KuN-m0z@hansken.db.elephantsql.com/uiziiixt';
 
 const pool = new Pool({
   connectionString: PG_URI,
@@ -49,7 +50,7 @@ CREATE TABLE task (
 
    INSERT INTO task (taskName, taskDescription, dueDate, toDoList, projectId, assignedTo, completed) 
    VALUES ('this is a name', 'this is a description', '2023-03-01', 1, 1,  '63dede316dfc3b90f4c4ee58', false);
-*/
+
 
 // CREATE TABLE project (
 //   _id SERIAL PRIMARY KEY,
