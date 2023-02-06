@@ -38,6 +38,9 @@ html {
   a:hover {
     color: white;
   }
+  #logoButton {
+    font-size: 2em;
+  }
 }
 
 .logButton {
@@ -127,10 +130,8 @@ html {
 }
 
 .Home {
- 
   background-color: #2dabad;
   min-height: 100vh;
-  
 }
 
 .Home-section {
