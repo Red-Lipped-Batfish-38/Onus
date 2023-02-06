@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link, useParams } from 'react-router-dom';
 import Project from '../components/Project.jsx';
 import TasksContainer from '../containers/TasksContainer.jsx';
@@ -8,15 +8,20 @@ import HomeContainer from '../containers/HomePage.jsx';
 import NavbarMain from './NavbarMain.jsx';
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { userID } = useParams();
   return (
     <div>
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
-      <NavbarMain className="navbar-main" />
+      <NavbarMain className="navbar-main" isLoggedIn={isLoggedIn} />
       <h1>WELCOME</h1>
       <Routes>
         {/* Auto load to Login page/> */}
-        <Route exact path="/" element={<Login />} />
+        <Route
+          exact
+          path="/"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
         <Route exact path={`/homepage`} element={<HomeContainer />} />
         {/* <Route path=":userId" element={<ProfilePage />} /> */}

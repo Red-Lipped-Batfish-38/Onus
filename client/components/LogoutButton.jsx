@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutButton = () => {
+  const navigate = useNavigate();
   const logout = () => {
     fetch('http://localhost:3000/account/logout', {
       method: 'GET',
@@ -11,6 +13,7 @@ const LogoutButton = () => {
       })
       .then((results) => {
         console.log('logged out of ', results);
+
         navigate('/');
       });
   };
