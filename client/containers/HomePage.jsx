@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import Project from '../components/Project.jsx';
 //TODO: figure out how to route projects
@@ -10,13 +10,53 @@ const HomeContainer = () => {
   //display every project on this page
   //pass all id into url params as variables
   const { userID } = useParams();
+  const navigate = useNavigate();
+  const { projects, setProjects } = useState(null);
+  const dummyState = [
+    {
+      projectName: 'solo',
+      projectDescription: 'wowie',
+    },
+    {
+      projectName: 'scratch',
+      projectDescription: 'times two',
+    },
+  ];
+  const userLogout = () => {
+    fetch('http://localhost:3000/account/logout', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((results) => {
+        console.log('logged out of ', results);
+        navigate('/');
+      });
+  };
+  useEffect(() => {
+    console.log('mounted');
+    fetch('http://localhost:3000/project', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((results) => {
+        console.log('got the goods', results);
+        // setProjects(results);
+        setProjects(results);
+      }, []);
+  });
   return (
     <div>
       <h1>HOMEPAGE</h1>
+      <div className="projectGrid"></div>
       {/* <Project /> */}
-      {/* stretch :: should have empty that allows user to create and be a leader in project */}
       <Link to="/user/1/project/3/">Project{`${userID}`}</Link>
-
+      <button type="button" onClick={userLogout}>
+        logot
+      </button>
       {/* createprojects button*/}
       <Link to="/">Login</Link>
     </div>
@@ -24,3 +64,6 @@ const HomeContainer = () => {
 };
 
 export default HomeContainer;
+{
+  /* stretch :: should have empty that allows user to create and be a leader in project */
+}

@@ -8,6 +8,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@mui/material';
+
 import { TextField, FormGroup } from '@mui/material'; //added by erica, delete if we don't need
 
 const TaskCard = ({ card }) => {
@@ -48,6 +49,14 @@ const TaskCard = ({ card }) => {
     setSubTasks([...subTasks, newSubTask]); //**why do you need ...card? */
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!subTaskInput) return;
+  //   addTasks(subTaskInput);
+  // };
+  // const addSubTasks = (newTask) => {
+  //   setSubTasks([...cards, newTask]);
+  // };
   return (
     <div>
       <div>
@@ -82,6 +91,7 @@ const TaskCard = ({ card }) => {
           </CardContent>
         </Card>
       </div>
+
     </div>
   );
 };

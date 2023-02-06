@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import LogoutButton from './LogoutButton.jsx';
+import { useState, useEffect } from 'react';
 
-function NavbarMain() {
+function NavbarMain({ isLoggedIn }) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -14,11 +16,9 @@ function NavbarMain() {
         </Nav.Link>
         <Nav className="mr-auto p-3">
           <Nav.Link className="fs-4" to="/account">
-            Account
-          </Nav.Link>
-          <Nav.Link className="fs-4" to="/account">
             About Us
           </Nav.Link>
+          {isLoggedIn ? <LogoutButton /> : null}
         </Nav>
       </Container>
     </Navbar>
