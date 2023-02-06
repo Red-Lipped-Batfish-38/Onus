@@ -121,3 +121,24 @@ html {
     border-radius: 5px;
   }
 }
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Home {
+ 
+  background-color: #2dabad;
+  min-height: 100vh;
+  
+}
+
+.Home-section {
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: relative;
+  margin: auto;
+  text-align: center;
+}
