@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import LogoutButton from './LogoutButton.jsx';
 import LoginButton from './LoginButton.jsx';
+import LogoButton from './LogoButton.jsx';
+
 // import HomeButton from './HomeButton.jsx';
 // import { useState, useEffect } from 'react';
 
@@ -17,9 +19,7 @@ function NavbarMain({ isLoggedIn, setIsLoggedIn }) {
         {/* <Nav className="toHomeButton">
           <HomeButton isLoggedIn={isLoggedIn} />
         </Nav> */}
-        <Nav.Link className="fs-1" to="/">
-          ONUS
-        </Nav.Link>
+        <LogoButton />
         <Nav className="mr-auto p-3">
           {isLoggedIn ? (
             <LogoutButton

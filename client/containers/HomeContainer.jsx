@@ -89,8 +89,8 @@ const HomeContainer = () => {
           <Project
             key={i}
             projectId={proj.projectid}
-            projectName={proj.projectname}
-            projectDescription={proj.projectdescription}
+            projectName={proj.projectName}
+            projectDescription={proj.projectDescription}
           />
         ))}
       </div>
