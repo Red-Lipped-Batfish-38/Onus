@@ -82,7 +82,9 @@ const TasksContainer = () => {
               })
             }
           />
-          <Button onClick={handleSubmit}>+</Button>
+          <Button onClick={handleSubmit} style={{ height: 56 }}>
+            +
+          </Button>
         </FormGroup>
       </div>
       <hr />

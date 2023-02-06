@@ -50,38 +50,42 @@ const HomeContainer = () => {
 
   return (
     <div>
-      <header className="projectHeader">
-        <h1>HOMEPAGE</h1>
-      </header>
-      <div className="projectInput">
-        <FormGroup row>
-          <TextField
-            label="Add New Project"
-            variant="outlined"
-            sx={{ width: 400, height: 100 }}
-            placeholder="Add Project"
-            onChange={(e) =>
-              setProjectInput({
-                ...projectInput,
-                projectName: e.target.value,
-              })
-            }
-          />
-          <TextField
-            label="Add Project Description"
-            variant="outlined"
-            sx={{ width: 400, height: 100 }}
-            placeholder="Add Project Description"
-            onChange={(e) =>
-              setProjectInput({
-                ...projectInput,
-                projectDescription: e.target.value,
-              })
-            }
-          />
+      <div>
+        <header className="projectHeader">
+          <h1>Your Projects</h1>
+        </header>
+        <div className="projectInput">
+          <FormGroup row>
+            <TextField
+              label="Add New Project"
+              variant="outlined"
+              sx={{ width: 300, height: 100 }}
+              placeholder="Add Project"
+              onChange={(e) =>
+                setProjectInput({
+                  ...projectInput,
+                  projectName: e.target.value,
+                })
+              }
+            />
+            <TextField
+              label="Add Project Description"
+              variant="outlined"
+              sx={{ width: 300, height: 100 }}
+              placeholder="Add Project Description"
+              onChange={(e) =>
+                setProjectInput({
+                  ...projectInput,
+                  projectDescription: e.target.value,
+                })
+              }
+            />
 
-          <Button onClick={handleSubmit}>+</Button>
-        </FormGroup>
+            <Button onClick={handleSubmit} style={{ height: 56 }}>
+              +
+            </Button>
+          </FormGroup>
+        </div>
       </div>
       <div className="projectGrid">
         {projects.map((proj, i) => (

@@ -137,9 +137,45 @@ html {
 .Home-section {
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: white;
   position: relative;
   margin: auto;
   text-align: center;
+}
+
+#blurb {
+  font-size: calc(10px + 2vmin);
+  color: rgb(77, 12, 77);
+  font-weight: bold;
+  font-style: italic;
+  background-color: $primary-color;
+  border: 2px white solid;
+}
+
+#blurbId {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: space-evenly;
+
+  .projectContainer {
+    width: auto;
+    // box-shadow: 5px 5px #414a4c;
+    margin: 15px;
+    border-radius: 5px;
+  }
 }
