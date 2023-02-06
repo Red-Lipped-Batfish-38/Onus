@@ -57,42 +57,45 @@ accountController.checkUserExists = (req, res, next) => {
       });
     });
 };
+
+
 accountController.verifyUser = (req, res, next) => {
-  console.log(JSON.parse(req.body));
-  //user logs in with email and password
-  const { email, password } = JSON.parse(req.body);
+    console.log('in verify user');
+    //user logs in with email and password
+    const {email, password} = req.body;
 
-  const controller = (passPhrase) => {
-    console.log(passPhrase, 'this is the password');
-    Account.find({ email }, 'password')
-      .exec()
-      .then((data) => {
-        console.log(data);
-        //compare plaintext pw and encrypted
-        bcrypt.compare(passPhrase, data[0].password, function (err, res) {
-          console.log(res, 'this is the res');
-          if (err) {
-            return next({
-              log: 'Error occurred in the accountController.verifyUser middleware',
-              status: 400,
-              err: { err: 'Either the password or username is incorrect' },
+
+      const controller = (passPhrase) => {
+      
+        console.log(passPhrase, 'this is the password');
+        Account.find({email}, 'password').exec()
+          .then((data) =>{
+            console.log(data);
+            //compare plaintext pw and encrypted
+            bcrypt.compare(passPhrase, data[0].password, function(err, res) {
+              console.log(res, 'this is the res');
+              if(!res){
+                return next({
+                    log: 'Error occurred in the accountController.verifyUser middleware',
+                    status: 400,
+                    err: { err: 'Either the password or username is incorrect'}
+                  });
+              } 
             });
-          }
-        });
+            
+            next();
+          })
+          .catch(err => {
+            next({
+                log: 'Error occurred in the accountController.verifyUser middleware',
+                status: 400,
+                err: { err: 'Unknown error'}
+            });
+          });
+      }
 
-        next();
-      })
-      .catch((err) => {
-        next({
-          log: 'Error occurred in the accountController.verifyUser middleware',
-          status: 400,
-          err: { err: 'Unknown error' },
-        });
-      });
-  };
-
-  controller(password);
-};
+    controller(password);
+}
 
 //for auto-checking user exists based on browser cookie upon useEffect react hook
 accountController.checkUser = (req, res, next) => {
