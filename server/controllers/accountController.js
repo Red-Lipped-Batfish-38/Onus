@@ -6,7 +6,7 @@ const accountController = {};
 accountController.createAccount = (req, res, next) => {
   // -->
   console.log('we are currently in account controller create account');
-  const { firstName, lastName, email, password } = JSON.parse(req.body);
+  const { firstName, lastName, email, password } = req.body;
   //console.log(req.body)
   console.log(firstName, lastName, email, password, 'checking credentials');
   if (!firstName || !lastName || !email || !password) {
@@ -60,42 +60,38 @@ accountController.checkUserExists = (req, res, next) => {
 
 
 accountController.verifyUser = (req, res, next) => {
-    console.log('in verify user');
-    //user logs in with email and password
-    const {email, password} = req.body;
+  console.log((req.body), 'this is the req.body as-is');
 
+  //user logs in with email and password
+  const { email, password } = req.body;
 
-      const controller = (passPhrase) => {
-      
-        console.log(passPhrase, 'this is the password');
-        Account.find({email}, 'password').exec()
-          .then((data) =>{
-            console.log(data);
-            //compare plaintext pw and encrypted
-            bcrypt.compare(passPhrase, data[0].password, function(err, res) {
-              console.log(res, 'this is the res');
-              if(!res){
-                return next({
-                    log: 'Error occurred in the accountController.verifyUser middleware',
-                    status: 400,
-                    err: { err: 'Either the password or username is incorrect'}
-                  });
-              } 
-            });
-            
-            next();
-          })
-          .catch(err => {
-            next({
-                log: 'Error occurred in the accountController.verifyUser middleware',
-                status: 400,
-                err: { err: 'Unknown error'}
-            });
-          });
-      }
+  const controller = (passPhrase) => {
+    console.log(passPhrase, 'this is the password');
+    Account.find({ email }, 'password')
+      .exec()
+      .then((data) => {
+        console.log(data);
+        //compare plaintext pw and encrypted
+        bcrypt.compare(passPhrase, data[0].password, function (err, res) {
+          console.log(res, 'this is the res');
+          if(res){
+            return next();
+          }
+        });
 
-    controller(password);
-}
+        
+      })
+      .catch((err) => {
+        next({
+          log: 'Error occurred in the accountController.verifyUser middleware',
+          status: 400,
+          err: { err: 'Unknown error' },
+        });
+      });
+  };
+
+  controller(password);
+};
 
 //for auto-checking user exists based on browser cookie upon useEffect react hook
 accountController.checkUser = (req, res, next) => {
