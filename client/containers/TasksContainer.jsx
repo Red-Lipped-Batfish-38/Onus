@@ -11,16 +11,15 @@ const TasksContainer = () => {
   // useEffect(() => {}, []);
 
   //add taskInput into tasks array
-  const addTasks = (newTask) => {
-    setTaskCards([...cards, newTask]);
-  };
+  // const addTasks = (newTask) => {
+  //   setTaskCards([...cards, newTask]);
+  // };
 
   //add a task to project
   const handleSubmit = (e) => {
     e.preventDefault();
     //SHOULD WE KEEP LINE 22.23?
-    // if (!taskInput) return;
-    // addTasks(taskInput);
+    if (!taskInput) return;
     //post request to add task to db
     fetch('http://localhost:3000/project/list', {
       method: 'POST',
@@ -34,7 +33,17 @@ const TasksContainer = () => {
       .then((res) => res.json())
       .then((results) => {
         console.log('created new task res', results);
-      });
+      })
+      .then(
+        setTaskCards([
+          ...cards,
+          {
+            name: taskInput,
+            project,
+            description: 'hoi, descrip for new task',
+          },
+        ])
+      );
   };
   //useEffect; makes a fetch request to get tasks
   useEffect(() => {
@@ -58,7 +67,7 @@ const TasksContainer = () => {
       <header className="taskHeader">
         <h1>TASKS</h1>
       </header>
-      <div className="taskHeader">
+      <div className="taskInput">
         <FormGroup row>
           <TextField
             label="Add New Task"
