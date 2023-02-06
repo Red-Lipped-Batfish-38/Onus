@@ -5,20 +5,22 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import LogoutButton from './LogoutButton.jsx';
-import { useState, useEffect } from 'react';
+import LoginButton from './LoginButton.jsx';
+// import { useState, useEffect } from 'react';
 
 function NavbarMain({ isLoggedIn }) {
   return (
     <Navbar bg="dark" variant="dark">
-      <Container>
+      <Container className="navBarBanner">
         <Nav.Link className="fs-1" to="/">
-          Project Manager
+          Onus
         </Nav.Link>
         <Nav className="mr-auto p-3">
-          <Nav.Link className="fs-4" to="/account">
-            About Us
-          </Nav.Link>
-          {isLoggedIn ? <LogoutButton /> : null}
+          {isLoggedIn ? (
+            <LogoutButton className="logoutButton" />
+          ) : (
+            <LoginButton />
+          )}
         </Nav>
       </Container>
     </Navbar>

@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const accountRouter = require('./routes/accountRouter');
 const projectRouter = require('./routes/projectRouter');
 const subtaskRouter = require('./routes/subtaskRouter');
@@ -27,7 +27,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
-//app.use(bodyParser.text());
+app.use(bodyParser.text());
 // require routers
 
 app.use('/account', accountRouter);
