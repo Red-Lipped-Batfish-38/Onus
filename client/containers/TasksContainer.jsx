@@ -1,75 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import TaskCard from '../components/TaskCard.jsx';
 import { TextField, FormGroup, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-//
+
 const TasksContainer = () => {
-  const [tasks, setTasks] = useState([]);
+  const [cards, setTaskCards] = useState([]); //taskcards = []
+  const [taskInput, setTaskInput] = useState('');
+  // useEffect(() => {}, []);
 
-  useEffect(() => {}, []);
-
+  //add taskInput into tasks array
   const addTasks = (newTask) => {
-    setTasks([...tasks, newTask]);
+    setTaskCards([...cards, newTask]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!taskInput) return;
+    addTasks(taskInput);
   };
 
   return (
-    <div>
-      <header>
-        <h1> TASKS</h1>
+    <div id="taskContainer">
+      <header className="taskHeader">
+        <h1>TASKS</h1>
+      </header>
+      <div className="taskHeader">
         <FormGroup row>
           <TextField
-            id="outlined-basic"
             label="Add New Task"
             variant="outlined"
-            sx={{ width: 300, height: 100 }}
-            InputProps
+            sx={{ width: 400, height: 100 }}
+            placeholder="Add Task"
+            onChange={(e) => setTaskInput(e.target.value)}
           />
-          <Button
-            className="add-subtask-btn"
-            onClick={() => {
-              fetch('/subtask', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'Application/JSON',
-                },
-                body: JSON.stringify({
-                  //this should send this for post
-                  subTaskName: 'subtaskname here',
-                  subTaskDescription: 'subtask description here',
-                  subTaskDueDate: 'subtask due date here',
-                  taskId: 'taskID here',
-                  completed: 'should be false',
-                }),
-              }) //end of fetch;
-                .then((data) => {
-                  console.log(data);
-                })
-                .catch((err) => console.log(err));
-            }} //end of onclick function
-          >
-            +
-          </Button>
+          <Button onClick={handleSubmit}>+</Button>
         </FormGroup>
-      </header>
-      <section className="grid">
-        {/* {tasks.map((task, i) => (
-          <TaskCard key={i} task={task} />
-        ))} */}
-        <TaskCard hi={'hi'} />
+      </div>
+      <hr />
+      <section className="cardGrid">
+        {cards.map((card, i) => (
+          <TaskCard key={i} card={card} />
+        ))}
       </section>
-      <Link to="/user/1/project/3/">back to project</Link>
     </div>
   );
 };
 
 export default TasksContainer;
-
-// CREATE TABLE subTask (
-//   _id SERIAL PRIMARY KEY,
-//   subTaskName VARCHAR(255) NOT NULL,
-//   subTaskDescription TEXT NOT NULL,
-//   subTaskDueDate DATE,
-//   taskId INT NOT NULL,
-//   completed BOOLEAN DEFAULT false,
-//   FOREIGN KEY (taskId) REFERENCES task(_id),
-// );

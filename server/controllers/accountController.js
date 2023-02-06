@@ -28,6 +28,38 @@ accountController.createAccount = (req, res, next) => {
       });
 }
 
+accountController.checkUserExists = (req, res, next) => {
+  console.log('in checkUserExists');
+  //user logs in with email and password
+  
+  const {email} = req.body;
+  console.log(email)
+      Account.find({email}).exec()
+        .then((data) =>{
+          console.log(data);
+          //compare plaintext pw and encrypted
+          if(data.length){
+            next();
+          }else {
+            next({
+              log: 'Error occurred in the accountController.checkUserExists middleware',
+              status: 400,
+              err: { err: 'User does not exist'}
+          });
+          }
+          
+         
+        })
+        .catch(err => {
+          next({
+              log: 'Error occurred in the accountController.verifyUser middleware',
+              status: 400,
+              err: { err: 'Unknown error'}
+          });
+        });
+    
+}
+
 
 accountController.verifyUser = (req, res, next) => {
     console.log('in verify user');
