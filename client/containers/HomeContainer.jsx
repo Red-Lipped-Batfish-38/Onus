@@ -51,15 +51,15 @@ const HomeContainer = () => {
   return (
     <div>
       <div>
-        <header className="projectHeader">
+        <header className="cardHeader">
           <h1>YOUR PROJECTS</h1>
         </header>
-        <div className="projectInput">
+        <div className="cardInput">
           <FormGroup row>
             <TextField
               label="Add New Project"
               variant="outlined"
-              sx={{ width: 300, height: 100 }}
+              sx={{ width: 400, height: 100 }}
               placeholder="Add Project"
               onChange={(e) =>
                 setProjectInput({
@@ -71,7 +71,7 @@ const HomeContainer = () => {
             <TextField
               label="Add Project Description"
               variant="outlined"
-              sx={{ width: 300, height: 100 }}
+              sx={{ width: 400, height: 100 }}
               placeholder="Add Project Description"
               onChange={(e) =>
                 setProjectInput({

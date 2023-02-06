@@ -53,10 +53,10 @@ const TasksContainer = () => {
 
   return (
     <div id="taskContainer">
-      <header className="taskHeader">
+      <header className="cardHeader">
         <h1>TASKS</h1>
       </header>
-      <div className="taskInput">
+      <div className="cardInput">
         <FormGroup row>
           <TextField
             label="Add New Task"
@@ -88,11 +88,11 @@ const TasksContainer = () => {
         </FormGroup>
       </div>
       <hr />
-      <section className="cardGrid">
+      <div className="cardGrid">
         {cards.map((card, i) => (
           <TaskCard key={i} card={card} />
         ))}
-      </section>
+      </div>
     </div>
   );
 };
