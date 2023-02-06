@@ -15,7 +15,7 @@ import {
 //   project,
 //   description: userInput.descriptionInput,
 // },
-
+//SUB TASK ARE NOT INCORPORATED
 const TaskCard = ({ card }, project) => {
   return (
     <div>
@@ -23,20 +23,20 @@ const TaskCard = ({ card }, project) => {
         <h3>Your tasks!!</h3>
       </div>
       <div className="cardContainer" color="blue">
-        <CardActionArea
+        {/* <CardActionArea
           component={Link}
           to={`/project/${card.projectid}/tasks/${card._id}`}
-        >
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {card.name}
-                <br></br>
-                {card.description}
-              </Typography>
-            </CardContent>
-          </Card>
-        </CardActionArea>
+        > */}
+        <Card sx={{ minWidth: 200 }}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              {card.name}
+              <br></br>
+              {card.description}
+            </Typography>
+          </CardContent>
+        </Card>
+        {/* </CardActionArea> */}
       </div>
     </div>
   );

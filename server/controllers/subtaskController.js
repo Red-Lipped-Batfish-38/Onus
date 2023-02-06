@@ -10,8 +10,8 @@ subtaskController.addSubtask = (req, res, next) => {
   console.log('addsubtask req body:', req.body);
   const {
     subTaskName,
-    subTaskDescription,
-    subTaskDueDate,
+    // subTaskDescription,
+    // subTaskDueDate,
     toDoListId,
     taskId,
     completed,
@@ -19,13 +19,13 @@ subtaskController.addSubtask = (req, res, next) => {
 
   console.log(
     'RESULTS from post request from taskCard: ',
-    subTaskName,
-    subTaskDescription,
-    subTaskDueDate
+    subTaskName
+    // subTaskDescription,
+    // subTaskDueDate
   );
 
-  const text = `INSERT INTO subtask (subtaskname, subtaskdescription, subtaskduedate, todolistid, taskid, completed)
-  VALUES ('${subTaskName}', '${subTaskDescription}', '${subTaskDueDate}', '${toDoListId}', '${taskId}', '${completed}')`;
+  const text = `INSERT INTO subtask (subtaskname, todolistid, taskid, completed)
+  VALUES ('${subTaskName}', '${toDoListId}', '${taskId}', '${completed}')`;
 
   db.query(text)
     .then((data) => {
@@ -33,8 +33,8 @@ subtaskController.addSubtask = (req, res, next) => {
       console.log('added data');
       res.locals.subtask = {
         subTaskName,
-        subTaskDescription,
-        subTaskDueDate,
+        // subTaskDescription,
+        subTaskDueDate: '2-05-2025',
         completed,
       };
       next();
@@ -49,16 +49,17 @@ subtaskController.addSubtask = (req, res, next) => {
 
 //on TaskCard render, the subtask list should populate
 subtaskController.getSubtask = (req, res, next) => {
+  console.log('in getsubtasks right now');
+
   //need task id and maybe todolist id
-  const { taskId, todolistId } = JSON.parse(req.params);
+  const { taskId, todolistId } = req.params;
   // const todolist_id = 2; //for testing purposes
   //grab subtasks from subtask table with corresponding todolist id
   const text = `SELECT * FROM subtask WHERE toDoListId = ${todolistId}`;
-  console.log('in getsubtasks right now');
   db.query(text)
     .then((data) => {
       //data.rows is an array of obj of each subtask
-      console.log(data.rows);
+      console.log('this is taskss todos', data.rows);
       const subTaskArray = data.rows;
       res.locals.subTaskArray = subTaskArray;
       next();
