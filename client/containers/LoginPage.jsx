@@ -69,7 +69,7 @@ const Login = ({ setIsLoggedIn }) => {
         <form>
           <label for="email">Email: </label>
           <input
-            type="text"
+            type="email"
             id="email"
             placeholder="Email"
             value={state.email}

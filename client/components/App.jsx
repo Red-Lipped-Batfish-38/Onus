@@ -13,7 +13,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { userID } = useParams();
   return (
-    <div className="appContainer">
+    <div className="Home">
       {/* header to persist through page, can link back to homepage, signout, switchuser */}
       <NavbarMain
         className="navbar-main"
