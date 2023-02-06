@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
-import TasksContainer from '../containers/TasksContainer.jsx';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
+
 //use params the endpoint for id url
 //then make a fetch request for all project/task info
 //display task info
 
 //TODO: connect to router first
 
-const Project = () => {
+const Project = (project) => {
   // const initalState = undefined;
   // const { userID, projectID } = useParams();
-
+  console.log(project);
   return (
-    <div>
+    <div className="projectContainer">
       <h3>this is project</h3>
-      {/* link to tasks */}
-      dummy
-      {/* {projects.projectName} */}
-      <p>userid: {userID}</p>
-      <p>projectid: {projectID}</p>
-      <Link to="/user/1/project/3/task/4">Open Tasks</Link>
+      {/* dummy */}
+      <Card sx={{ minWidth: 200 }}>
+        <Link to={`/tasks/${project.project}`}>Open Tasks</Link>
+        <CardContent>
+          <Typography variant="h5" component="div">
+            Project {JSON.stringify(project.project)}
+            {/* why so ugly */}
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 };

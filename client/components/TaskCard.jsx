@@ -57,6 +57,7 @@ const TaskCard = ({ card }) => {
   // const addSubTasks = (newTask) => {
   //   setSubTasks([...cards, newTask]);
   // };
+
   return (
     <div>
       <div>
@@ -72,7 +73,9 @@ const TaskCard = ({ card }) => {
         <Card sx={{ minWidth: 200 }}>
           <CardContent>
             <Typography variant="h5" component="div">
-              {card}
+              {card.name}
+              <br></br>
+              {card.description}
             </Typography>
             <Typography sx={{ mb: 1.5 }}>
               Sub Tasks
@@ -91,7 +94,6 @@ const TaskCard = ({ card }) => {
           </CardContent>
         </Card>
       </div>
-
     </div>
   );
 };

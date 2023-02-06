@@ -4,7 +4,8 @@ const projectController = require('../controllers/projectController');
 const accountController = require('../controllers/accountController');
 
 //create a project
-router.post('/',
+router.post(
+  '/',
   accountController.checkUser,
   projectController.createProject,
   accountController.addProjectToAccount,
@@ -15,7 +16,8 @@ router.post('/',
 );
 
 //create a to do list
-router.post('/list',
+router.post(
+  '/list',
   accountController.checkUser,
   projectController.createToDo,
   (req, res) => {
@@ -25,7 +27,8 @@ router.post('/list',
 );
 
 //create a task
-router.post('/task',
+router.post(
+  '/task',
   accountController.checkUser,
   accountController.checkUserExists,
   projectController.createTask,
@@ -36,7 +39,8 @@ router.post('/task',
 );
 
 //add a user
-router.post('/add',
+router.post(
+  '/add',
   accountController.checkUser,
   accountController.checkUserExists,
   projectController.addUserToProject,
@@ -47,7 +51,8 @@ router.post('/add',
 );
 
 //mark task as completed
-router.patch('/complete',
+router.patch(
+  '/complete',
   accountController.checkUser,
   projectController.markTaskComplete,
   (req, res) => {
@@ -57,7 +62,8 @@ router.patch('/complete',
 );
 
 //grab all projects corresponding to user
-router.get('/',
+router.get(
+  '/',
   accountController.checkUser,
   projectController.getProjects,
   (req, res) => {
@@ -67,7 +73,8 @@ router.get('/',
 );
 
 //grab all toDoLists corresponding to project
-router.get('/list',
+router.get(
+  '/list/:project',
   accountController.checkUser,
   projectController.getToDos,
   (req, res) => {
@@ -77,7 +84,8 @@ router.get('/list',
 );
 
 //get all tasks corresponding to project
-router.get('/task',
+router.get(
+  '/task',
   accountController.checkUser,
   projectController.getTasks,
   (req, res) => {

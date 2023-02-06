@@ -11,7 +11,7 @@ const HomeContainer = () => {
   //pass all id into url params as variables
   const { userID } = useParams();
   const navigate = useNavigate();
-  const { projects, setProjects } = useState(null);
+  const [projects, setProjects] = useState([]);
   const dummyState = [
     {
       projectName: 'solo',
@@ -43,20 +43,21 @@ const HomeContainer = () => {
     })
       .then((res) => res.json())
       .then((results) => {
-        console.log('got the goods', results);
-        // setProjects(results);
-        setProjects(results);
-      }, []);
-  });
+        console.log('got the goods', results.projects);
+        const projArr = results.projects;
+        setProjects([...projArr]);
+        console.log('state proj', projects);
+      });
+  }, []);
   return (
     <div>
       <h1>HOMEPAGE</h1>
-      <div className="projectGrid"></div>
-      {/* <Project /> */}
-      <Link to="/user/1/project/3/">Project{`${userID}`}</Link>
-      <button type="button" onClick={userLogout}>
-        logot
-      </button>
+      <div className="projectGrid">
+        {projects.map((project, i) => (
+          <Project key={i} project={project.projectid} />
+        ))}
+      </div>
+      {/* <Link to="/user/1/project/3/">Project{`${userID}`}</Link> */}
       {/* createprojects button*/}
       <Link to="/">Login</Link>
     </div>
