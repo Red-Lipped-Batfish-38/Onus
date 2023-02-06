@@ -42,7 +42,7 @@ const TasksContainer = () => {
           {
             name: taskInput,
             project,
-            description: 'hoi, descrip for new task',
+            description: userInput.descriptionInput,
           },
         ])
       );
