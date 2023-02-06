@@ -30,7 +30,7 @@ router.post('/', accountController.createAccount,
                       sessionController.startSession,
   (req, res) => {
     //send status 200 and return ssid, equivalent to cookie set in browser
-    return res.status(200).json(res.locals.correctEmail);
+    return res.status(200).json(res.locals.response);
   });
 
 

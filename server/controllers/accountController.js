@@ -63,8 +63,12 @@ accountController.verifyUser = (req, res, next) => {
   console.log((req.body), 'this is the req.body as-is');
   //console.log(req)
   //user logs in with email and password
-  
   const { email, password } = JSON.parse(req.body);
+  res.locals.response = {
+    email: email,
+    message: 'credentials are correct'
+  }
+  
 
   const controller = (passPhrase) => {
     console.log(passPhrase, 'this is the password');
@@ -76,18 +80,22 @@ accountController.verifyUser = (req, res, next) => {
         bcrypt.compare(passPhrase, data[0].password, function (err, res) {
           console.log(res, 'this is the res');
           if(res){
-            res.locals.correctEmail = {
-              email: email,
-              message: 'credentials are correct'
-            }
-            return next();
-          }else {
-            return next({
-              log: 'Error occurred in the accountController.verifyUser middleware',
+            next();
+          } else {
+            next({
+              log: 'Credentials are incorrect',
               status: 400,
-              err: { err: 'The credentials are incorrect' },
+              err: { err: 'Incorrect email' },
             })
           }
+          // else {
+          //   return next({
+          //     log: 'Error occurred in the accountController.verifyUser middleware',
+          //     status: 400,
+          //     err: { err: 'The credentials are incorrect' },
+          //   })
+          // }
+          
         });
 
         
