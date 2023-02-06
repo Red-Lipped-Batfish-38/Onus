@@ -110,16 +110,37 @@ projectController.getProjects = (req, res, next) => {
 
   const text = `SELECT projectToUser.projectid FROM projectToUser WHERE userid = '${email}'`;
 
-  db.query(text)
-    .then((data) => {
-      console.log(data.rows);
-      const projects = data.rows;
-      console.log('successfully grabbed corresponding projects');
-      res.locals.projects = { projects };
-      next();
-    })
-    .catch((e) => console.log(e));
-};
+    db
+      .query(text)
+      .then(data => {
+        console.log(data.rows);
+        const projects = data.rows
+        console.log('successfully grabbed corresponding projects');
+        res.locals.projects = projects;
+        //console.log(res.locals.projects, 'this is current obj')
+        const newText = `SELECT * FROM project`;
+        db
+      .query(newText)
+      .then(allProjectData => {
+        //console.log(allProjectData.rows, 'this is all project data');
+        for(let i = 0; i < allProjectData.rows.length; i++){
+            for(const item of res.locals.projects){
+                if(item.projectid == allProjectData.rows[i]._id ){
+                    item.projectname = allProjectData.rows[i].projectname;
+                    item.projectdescription = allProjectData.rows[i].projectdescription
+                }
+            }
+        }
+        console.log(res.locals.projects, 'this is updated')
+        next();
+            
+      })
+      .catch(e => console.log(e));
+            
+      })
+      .catch(e => console.log(e));
+     
+  };
 
 projectController.getToDos = (req, res, next) => {
   const { project } = req.params;
