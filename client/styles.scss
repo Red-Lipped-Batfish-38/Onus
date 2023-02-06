@@ -10,6 +10,11 @@ html {
   background-color: $primary-dark;
 }
 
+// +++ APP.jsx +++
+.appContainer {
+  background-color: $primary-dark;
+  color: $primary-text;
+}
 // +++ NAVBAR +++
 .navbar {
   height: 60px;
@@ -60,6 +65,7 @@ html {
     color: $primary-text;
     text-decoration: none;
     font-size: 1.4em;
+    margin-top: 40px;
   }
   form {
     display: flex;
@@ -82,7 +88,7 @@ html {
     button {
       background-color: $primary-light;
       border: none;
-      margin-top: 10px;
+      margin-top: 20px;
       height: 40px;
       width: 100px;
       border-radius: 5px;
@@ -90,12 +96,6 @@ html {
       color: $primary-text;
     }
   }
-}
-
-// +++ APP.jsx +++
-.appContainer {
-  background-color: $primary-dark;
-  color: $primary-text;
 }
 
 #taskContainer {
