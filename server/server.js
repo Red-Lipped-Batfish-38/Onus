@@ -6,9 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const accountRouter = require('./routes/accountRouter');
 const projectRouter = require('./routes/projectRouter');
+const subtaskRouter = require('./routes/subtaskRouter');
 //require('dotenv').config();
 //once we have a secret key available contingent on db
-const key = 'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
+const key =
+  'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(key);
 
 const PORT = 3000;
@@ -30,6 +32,7 @@ app.use(bodyParser.text());
 
 app.use('/account', accountRouter);
 app.use('/project', projectRouter);
+app.use('/subtask', subtaskRouter);
 // require controllers?
 
 app.use((req, res) => {
@@ -50,8 +53,3 @@ app.use((err, req, res, next) => {
 module.exports = app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
 );
-
-// {
-//   "email" : "nicholas@nicholas.com",
-//  "password": "something"
-// }

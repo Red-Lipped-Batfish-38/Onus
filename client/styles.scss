@@ -31,9 +31,26 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .taskHeader {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.taskHeader {
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-evenly;
+
+  .cardContainer {
+    width: auto;
+    // box-shadow: 5px 5px #414a4c;
+    margin: 15px;
+    border-radius: 5px;
+  }
+}
+.form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
