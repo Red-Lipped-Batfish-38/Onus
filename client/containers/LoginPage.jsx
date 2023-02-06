@@ -13,10 +13,10 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   useEffect(() => {
     setIsLoggedIn(false);
-    fetch('http://localhost:3000/account/logout', {
-      method: 'GET',
-      credentials: 'include',
-    });
+    // fetch('http://localhost:3000/account/logout', {
+    //   method: 'GET',
+    //   credentials: 'include',
+    // });
   }, []);
 
   const handleChange = (e) => {

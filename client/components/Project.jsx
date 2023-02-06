@@ -10,6 +10,7 @@ import {
   Checkbox,
   CardActionArea,
   FormGroup,
+  TextField,
 } from '@mui/material';
 
 //use params the endpoint for id url
@@ -18,12 +19,12 @@ import {
 
 //TODO: connect to router first
 
-const Project = (project) => {
+const Project = ({ projectId, projectName, projectDescription }) => {
   // const initalState = undefined;
   // const { userID, projectID } = useParams();
   const [addusers, setAddUsers] = useState({
     email: '',
-    project: project.project,
+    project: projectId,
   });
 
   const handleSubmit = (e) => {
@@ -41,20 +42,20 @@ const Project = (project) => {
   };
 
   //waiting for mark to make controller
-  useEffect(() => {}, []);
-  console.log('project;', project);
-  console.log('project.project', project.project);
+  // useEffect(() => {}, []);
+  // console.log('project;', projectInfo);
+  // console.log('project.project');
 
   return (
     <div className="projectContainer">
       {/* dummy */}
-      <CardActionArea component={RouterLink} to={`/project/${project.project}`}>
+      <CardActionArea component={RouterLink} to={`/project/${projectId}`}>
         <Card sx={{ minWidth: 200 }}>
           {/* this should be a dynamically created title*/}
           <CardContent>
-            <h3>Dynamically Created Project Title Here</h3>
+            <h3>{projectName}</h3>
             <Typography variant="h5" component="div">
-              Project {JSON.stringify(project.project)}
+              {projectDescription}
               {/* why so ugly */}
             </Typography>
             <hr />

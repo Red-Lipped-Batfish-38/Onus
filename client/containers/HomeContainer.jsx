@@ -18,24 +18,8 @@ const HomeContainer = () => {
     projectDescription: '',
   });
 
-  useEffect(() => {
-    console.log('Home page mounted');
-    fetch('http://localhost:3000/project', {
-      method: 'GET',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((results) => {
-        console.log('got the goods', results.projects);
-        console.log('got the project goods - HomePage line 47', results);
-        const projArr = results.projects;
-        setProjects([...projArr]);
-        console.log('state proj', projects);
-        console.log('Proj[0]', projects[0]);
-      });
-  }, []);
-
   const handleSubmit = (e) => {
+    console.log('projectInput:', projectInput);
     e.preventDefault();
     if (projectInput.projectName === '') return;
     //post request to add task to db
@@ -50,6 +34,19 @@ const HomeContainer = () => {
       })
       .then(setProjects([...projects, projectInput]));
   };
+  useEffect(() => {
+    console.log('Home page mounted');
+    fetch('http://localhost:3000/project', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((results) => {
+        console.log('got the project goods - HomePage line 47', results);
+        const projArr = results;
+        setProjects([...projArr]);
+      });
+  }, []);
 
   return (
     <div>
@@ -87,9 +84,14 @@ const HomeContainer = () => {
         </FormGroup>
       </div>
       <div className="projectGrid">
-        {projects.map((project, i) => (
+        {projects.map((proj, i) => (
           //should be passing down project name and project description, not id
-          <Project key={i} project={project.projectid} />
+          <Project
+            key={i}
+            projectId={proj.projectid}
+            projectName={proj.projectname}
+            projectDescription={proj.projectdescription}
+          />
         ))}
       </div>
       {/* <Link to="/user/1/project/3/">Project{`${userID}`}</Link> */}
