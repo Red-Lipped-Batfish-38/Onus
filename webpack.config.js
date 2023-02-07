@@ -14,6 +14,7 @@ module.exports = {
     }),
   ],
   devServer: {
+    historyApiFallback: true,
     static: {
       publicPath: '/',
       directory: path.resolve(__dirname, 'build'),
