@@ -3,7 +3,8 @@ const { Pool } = require('pg');
 //require('dotenv').config();
 
 const PG_URI =
-  'postgres://uiziiixt:6qoAfgoyFy6N4K8Y_yXBFZEM2KuN-m0z@hansken.db.elephantsql.com/uiziiixt';
+  'postgres://fkmtqvcp:CFXNXOGrEfb6wqPJWyTjWwc5xJh8hB0F@trumpet.db.elephantsql.com/fkmtqvcp';
+// 'postgres://uiziiixt:6qoAfgoyFy6N4K8Y_yXBFZEM2KuN-m0z@hansken.db.elephantsql.com/uiziiixt';
 
 const pool = new Pool({
   connectionString: PG_URI,
