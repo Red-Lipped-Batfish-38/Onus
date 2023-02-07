@@ -105,3 +105,4 @@ dist
 
 # Backup of MongoDB
 dump/
+pg_backup.sql
