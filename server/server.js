@@ -10,7 +10,9 @@ const subtaskRouter = require('./routes/subtaskRouter');
 //require('dotenv').config();
 //once we have a secret key available contingent on db
 const key =
-  'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
+  'mongodb+srv://danger-snake:C2b4le0QvZavcgP3@danger-snake.cazraa2.mongodb.net/?retryWrites=true&w=majority';
+// old key from the original team
+// 'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(key);
 
 const PORT = 3000;
