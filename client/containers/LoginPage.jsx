@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //{email and password} mongo
 //Includes user login, link to sign up, on sign in, route to HomeContainer
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, isLoggedIn }) => {
   const [state, setState] = useState({ email: '', password: '' });
   const [loginFailed, setLoginFailed] = useState(false);
   const navigate = useNavigate();
@@ -44,9 +44,11 @@ const Login = ({ setIsLoggedIn }) => {
       .then((res) => res.json())
       .then((result) => {
         console.log('post req', result);
-        console.log('login OK');
-        setIsLoggedIn(true);
-        navigate('/homepage');
+        console.log('response in LOGIN: ', result);
+        if (result.email) {
+          setIsLoggedIn(true);
+          navigate('/homepage');
+        }
       })
       .catch((err) => {
         setLoginFailed(true); //same as setIsLogged In?

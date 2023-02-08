@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import TaskCard from '../components/TaskCard.jsx';
-import { TextField, FormGroup, Button } from '@mui/material';
+import { TextField, FormGroup, Button, Typography } from '@mui/material';
 
 const TasksContainer = () => {
   const { project } = useParams();
+  let { state } = useLocation();
 
   const [cards, setTaskCards] = useState([]); //taskcards = []
   const [userInput, setUserInput] = useState({
@@ -54,8 +55,11 @@ const TasksContainer = () => {
   return (
     <div id="taskContainer">
       <header className="cardHeader">
-        <h1>TASKS</h1>
+        <h1>{state.projectName}</h1>
       </header>
+      <Typography variant="h5" component="div">
+        {state.projectDescription}
+      </Typography>
       <div className="cardInput">
         <FormGroup row>
           <TextField
