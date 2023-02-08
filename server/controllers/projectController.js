@@ -142,10 +142,8 @@ projectController.getProjects = (req, res, next) => {
           for (let i = 0; i < allProjectData.rows.length; i++) {
             for (const item of res.locals.projects) {
               if (item.projectid == allProjectData.rows[i]._id) {
-
                 item.projectName = allProjectData.rows[i].projectname;
                 item.projectDescription =
-
                   allProjectData.rows[i].projectdescription;
               }
             }
