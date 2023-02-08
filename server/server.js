@@ -7,12 +7,9 @@ const bodyParser = require('body-parser');
 const accountRouter = require('./routes/accountRouter');
 const projectRouter = require('./routes/projectRouter');
 const subtaskRouter = require('./routes/subtaskRouter');
-//require('dotenv').config();
-//once we have a secret key available contingent on db
-const key =
-  'mongodb+srv://danger-snake:C2b4le0QvZavcgP3@danger-snake.cazraa2.mongodb.net/?retryWrites=true&w=majority';
-// old key from the original team
-// 'mongodb+srv://mzkrasner:element@cluster0.gxacbcq.mongodb.net/?retryWrites=true&w=majority';
+require('dotenv').config();
+// note this is a URL, not a key, but that's what they named it and I don't want to change it
+const key = process.env.MONGO_URL;
 mongoose.connect(key);
 
 const PORT = 3000;

@@ -1,12 +1,10 @@
 const { Pool } = require('pg');
-//const key = process.env.SECRET_KEY;
-//require('dotenv').config();
+require('dotenv').config();
 
-const PG_URI =
-  'postgres://fkmtqvcp:CFXNXOGrEfb6wqPJWyTjWwc5xJh8hB0F@trumpet.db.elephantsql.com/fkmtqvcp';
-// 'postgres://uiziiixt:6qoAfgoyFy6N4K8Y_yXBFZEM2KuN-m0z@hansken.db.elephantsql.com/uiziiixt';
+// const PG_URI = process.env.PG_URI;
+const PG_URI = process.env.PG_URI;
 
-// postgres://fkmtqvcp:CFXNXOGrEfb6wqPJWyTjWwc5xJh8hB0F@trumpet.db.elephantsql.com/fkmtqvcp
+console.log(PG_URI);
 
 const pool = new Pool({
   connectionString: PG_URI,
