@@ -26,7 +26,9 @@ const App = () => {
         <Route
           exact
           path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          element={
+            <Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          }
         />
         <Route
           exact

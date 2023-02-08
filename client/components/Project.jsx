@@ -50,7 +50,13 @@ const Project = ({ projectId, projectName, projectDescription }) => {
   return (
     <div className="projectContainer">
       {/* dummy */}
-      <CardActionArea component={RouterLink} to={`/project/${projectId}`}>
+      <CardActionArea
+        component={RouterLink}
+        to={`/project/${projectId}`}
+        // below line is attempting to display project name in task container
+        state={{ projectName, projectDescription }}
+        //
+      >
         <Card sx={{ minWidth: 200 }}>
           {/* this should be a dynamically created title*/}
           <CardContent>

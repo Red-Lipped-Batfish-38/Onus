@@ -27,21 +27,21 @@ const TaskCard = ({ card }, project) => {
           ))}
         </ul> */}
       <div className="cardContainer" color="blue">
-        <CardActionArea
-          component={Link}
-          to={`/project/${card.projectid}/tasks/${card._id}`}
-        >
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {card.name}
-              </Typography>
-              <Typography variant="p" component="div">
-                {card.description}
-              </Typography>
-            </CardContent>
-          </Card>
-        </CardActionArea>
+        {/* <CardActionArea // this CardActionArea component was for used as a link to SubTasks --> Not necessary?
+          // component={Link}
+          // to={`/project/${card.projectid}/tasks/${card._id}`}
+        > */}
+        <Card sx={{ minWidth: 200 }}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              {card.name}
+            </Typography>
+            <Typography variant="p" component="div">
+              {card.description}
+            </Typography>
+          </CardContent>
+        </Card>
+        {/* </CardActionArea> */}
       </div>
     </div>
   );
